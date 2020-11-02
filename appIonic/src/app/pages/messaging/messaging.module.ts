@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { TripPageRoutingModule } from './trip-routing.module';
+import { MessagingPageRoutingModule } from './messaging-routing.module';
 
-import { TripPage } from './trip.page';
+import { MessagingPage } from './messaging.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TripPageRoutingModule
+    MessagingPageRoutingModule
   ],
-  declarations: [TripPage]
+  declarations: [MessagingPage]
 })
-export class TripPageModule {}
+export class MessagingPageModule {}
