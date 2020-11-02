@@ -1,0 +1,7 @@
+{
+  "name": "gretaGo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,47 @@
+<h1 id="title" class="title">Modifications</h1>
+
+<nb-card size="large">
+  <nb-card-body>
+    <button (click)="goBack()">Retour</button>
+    <form>
+      <div class="form-control-group">
+        <label class="label" for="input-name">Nom :</label>
+        <input
+          name="name"
+          nbInput
+          fullWidth
+          [(ngModel)]="training.name"
+          id="input-name"
+          placeholder="name"
+        />
+      </div>
+
+      <div>
+        <label class="label" for="input-start_date">Date de début</label>
+        <input
+          id="input-start_date"
+          nbInput
+          name="start_date"
+          placeholder="start_date"
+          [nbDatepicker]="formpicker"
+          [(ngModel)]="training.start_date"
+        />
+        <nb-rangepicker #formpicker></nb-rangepicker>
+      </div>
+      <div>
+        <label class="label" for="input-end_date">Date de fin</label>
+        <input
+          id="input-end_date"
+          nbInput
+          placeholder="end_date"
+          [nbDatepicker]="formpicker2"
+          [(ngModel)]="training.end_date"
+          name="end_date"
+        />
+        <nb-rangepicker #formpicker2></nb-rangepicker>
+      </div>
+
+      <button nbButton fullWidth (click)="save()">Valider</button>
+    </form>
+  </nb-card-body>
+</nb-card>

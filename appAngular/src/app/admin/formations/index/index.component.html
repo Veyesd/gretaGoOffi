@@ -1,0 +1,39 @@
+<h1>Liste des formations</h1>
+
+<nb-card class="own-scroll" size="large">
+  <nb-card-body>
+    <!-- <label class="search-label" for="search">Search:</label>
+    <input
+      nbInput
+      [nbFilterInput]="dataSource"
+      id="search"
+      class="search-input"
+    /> -->
+<button routerLink="./add">  Ajouter </button>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <td scope="col">Nom</td>
+          <td scope="col">Date de début</td>
+          <td scope="col">Date de fin</td>
+          <td scope="col">status</td>
+          <td scope="col"></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let training of trainings">
+          <td scope="row">{{ training.name }}</td>
+          <td>{{ training.start_date }}</td>
+          <td>{{ training.end_date }}</td>
+          <td>{{ training.status }}</td>
+
+          <td>
+            <span class="delete" title="delete training" (click)="delete(training)">x</span>
+            <a class="edit" title="edit training" routerLink="./edit/{{training.id}}">M</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </nb-card-body>
+</nb-card>

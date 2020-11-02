@@ -1,0 +1,34 @@
+<h1>Liste des lieux de formations</h1>
+
+<nb-card class="own-scroll" size="large">
+  <nb-card-body>
+    <!-- <label class="search-label" for="search">Search:</label>
+    <input
+      nbInput
+      [nbFilterInput]="dataSource"
+      id="search"
+      class="search-input"
+    /> -->
+<button routerLink="./add">  Ajouter </button>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <td scope="col">Nom</td>
+          <td scope="col">Adresse</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let place of places">
+          <td scope="row">{{ place.name }}</td>
+          <td>{{ place.address }}</td>
+
+          <td>
+            <span class="delete" title="delete" (click)="delete(place)">X</span>
+            <a class="edit" title="edit" routerLink="./edit/{{place.id}}">M</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </nb-card-body>
+</nb-card>
