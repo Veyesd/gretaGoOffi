@@ -3,24 +3,17 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  },
-  {
-    path: 'compte',
-    loadChildren: () => import('./pages/compte/compte.module').then( m => m.ComptePageModule)
-  },
-  {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'account',
-    loadChildren: () => import('./pages/account/account.module').then( m => m.AccountPageModule)
+    path: 'login',
+    loadChildren: () =>
+      import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
-    path: 'tchat',
-    loadChildren: () => import('./pages/tchat/tchat.module').then( m => m.TchatPageModule)
+    path: 'account',
+    loadChildren: () => import('./pages/account/account.module').then( m => m.AccountPageModule)
   },
   {
     path: 'trip',
