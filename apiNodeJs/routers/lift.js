@@ -8,7 +8,7 @@ var router = express.Router()
 const Lift = require('../models/lift')(sequelize, Sequelize.DataTypes);
 const Conversation = require('../models/conversation')(sequelize, Sequelize.DataTypes);
 const User_has_lift=  require('../models/user_has_lift')(sequelize, Sequelize.DataTypes);
-const User=  require('../models/User')(sequelize, Sequelize.DataTypes);
+const User=  require('../models/user')(sequelize, Sequelize.DataTypes);
 Conversation.belongsTo(Conversation, {
   foreignKey: "conversation_id",
   keyType: Sequelize.INTEGER,

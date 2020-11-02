@@ -5,7 +5,7 @@ const sequelize = require('../db.config')
 
 // CHARGEMENT DU MODEL 
 const BugReport = require('../models/bug_report')(sequelize, Sequelize.DataTypes);
-const User=  require('../models/User')(sequelize, Sequelize.DataTypes);
+const User=  require('../models/user')(sequelize, Sequelize.DataTypes);
 BugReport.belongsTo(User, {
   foreignKey: "user_id",
   keyType: Sequelize.INTEGER,
