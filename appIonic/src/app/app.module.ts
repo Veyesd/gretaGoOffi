@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
+import { TripComponent } from './components/trip/trip.component';
+
 
 @NgModule({
   declarations: [AppComponent],

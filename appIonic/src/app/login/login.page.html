@@ -20,8 +20,9 @@
     >
       <ion-input value="email" placeholder="Adresse email du Greta"></ion-input>
       <ion-input value="mdp" type="password" name="password" placeholder="Mot de passe" [(ngModel)]="credentials.pw"></ion-input>
-      <ion-button (click)="login()" expand="block">Login</ion-button>
+      <button (click)="login()" id="go"><img src="assets/boutonGo.png" alt="Go"/></button>
       <a>Mot de passe oublié</a>
     </ion-col>
   </ion-row>
+  <div id="illustrationVoiture"><img src="assets/voitureEtVague.png" alt="Une voiture"/></div>
 </ion-content>

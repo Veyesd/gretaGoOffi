@@ -1,0 +1,61 @@
+ion-thumbnail {
+  height: 100%;
+}
+ion-thumbnail > ion-img {
+  height: 100%;
+  object-fit: contain;
+}
+ion-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+ion-card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+ion-chip {
+  --background: #154f9a;
+  color: white;
+  font-weight: 600;
+  margin: 0;
+}
+ion-chip ion-icon {
+  color: white;
+}
+.avatar {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.trajet {
+  width: 70%;
+}
+.trajet > ion-icon {
+  width: 100%;
+}
+.LieuHoraire {
+  display: flex;
+  justify-content: space-between;
+}
+.trajet > p {
+  text-align: center;
+}
+.fleche {
+  display: flex;
+  align-items: center;
+}
+.fleche > div {
+  height: 4px;
+  width: 100%;
+  background-color: #154f9a;
+}
+.fleche > ion-icon {
+  height: 30px;
+  width: 30px;
+  margin: -10px;
+  color: #154f9a;
+}
