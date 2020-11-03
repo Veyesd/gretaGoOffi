@@ -1,0 +1,1466 @@
+swagger: '2.0'
+info:
+  description: gretaGo API.
+  version: 1.0.0
+  title: gretaGo API
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: petplace.swagger.io
+basePath: /v2
+tags:
+  - name: user
+    description: Authentification et Opérations sur user
+  - name: alert
+    description: Opérations sur alert
+  - name: bug_report
+    description: Opérations sur alert
+  - name: conversation
+    description: Opérations sur conversation
+  - name: lift
+    description: Opérations sur lift
+  - name: message
+    description: Opérations sur message
+  - name: place
+    description: Opérations sur place
+  - name: sentence
+    description: Opérations sur sentence
+  - name: training
+    description: Opérations sur training
+  - name: admin
+    description: Opérations sur admin
+  - name: variable
+    description: Opérations sur variable
+  - name: variable_value
+    description: Opérations sur variable_value
+schemes:
+  - https
+  - http
+paths:
+  /user/register:
+    post:
+      tags:
+        - user
+      summary: Insérer un user
+      description:  Il faut être connecté en tant que l'administrateur. firstname,password,training_id email obligatoire. id pas nécessaire 
+      operationId: Insertuser
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Insérer un user object
+          required: true
+          schema:
+            $ref: '#/definitions/user'
+      responses:
+        default:
+          description: user créé
+
+  /user/:
+    get:
+      tags:
+        - user
+      summary: Obtenir la liste des données d'user
+      description: ''
+      operationId: getuserList
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/user'
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: user not found
+  '/user/{id}':
+    put:
+      tags:
+        - user
+      summary: user mis à jour
+      description: Il faut être connecté en tant que l'administrateur.
+      operationId: updateuser
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de user '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+        - in: body
+          name: body
+          description: Updated user object
+          required: true
+          schema:
+            $ref: '#/definitions/user'
+      responses:
+        '200':
+          description: mise à jour de l'user
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: user introuvable
+    delete:
+      tags:
+        - user
+      summary: Supprimer un user
+      description: Il faut être connecté en tant que l'administrateur
+      operationId: deleteuser
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id de l'user
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: user supprimé
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: user introuvable
+  /alert/register:
+    post:
+      tags:
+        - alert
+      summary: Insérer un alert
+      description: 
+        Il faut être connecté en tant que l'alert. lat, ing, user_id obligatoire. id pas nécessaire 
+      operationId: Insertalert
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Insérer un alert object
+          required: true
+          schema:
+            $ref: '#/definitions/alert'
+      responses:
+        default:
+          description: alert créé
+
+  /alert/:
+    get:
+      tags:
+        - alert
+      summary: Obtenir la liste des données d'alert
+      description: ''
+      operationId: getalertList
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/alert'
+        '400':
+          description: Invalid alertname supplied
+        '404':
+          description: alert not found
+  '/alert/{id}':
+    put:
+      tags:
+        - alert
+      summary: alert mis à jour
+      description: Il faut être connecté en tant que l'administrateur.
+      operationId: updatealert
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de alert '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+        - in: body
+          name: body
+          description: Updated alert object
+          required: true
+          schema:
+            $ref: '#/definitions/alert'
+      responses:
+        '200':
+          description: mise à jour de l'alert
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: alert introuvable
+    delete:
+      tags:
+        - alert
+      summary: Supprimer un alert
+      description: Il faut être connecté en tant que l'administrateur
+      operationId: deletealert
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id de l'alert
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: alert supprimé
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: alert introuvable
+  /bug_report/register:
+    post:
+      tags:
+        - bug_report
+      summary: Insérer un bug_report
+      description:  Il faut être connecté en tant que l'administrateur. description, user_id obligatoire. id pas nécessaire 
+      operationId: Insertbug_report
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Insérer un bug_report object
+          required: true
+          schema:
+            $ref: '#/definitions/bug_report'
+      responses:
+        default:
+          description: bug_report créé
+
+  /bug_report/:
+    get:
+      tags:
+        - bug_report
+      summary: Obtenir la liste des données d'bug_report
+      description: ''
+      operationId: getbug_reportList
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/bug_report'
+        '400':
+          description: Invalid bug_reportname supplied
+        '404':
+          description: bug_report not found
+  '/bug_report/{id}':
+    put:
+      tags:
+        - bug_report
+      summary: bug_report mis à jour
+      description: Il faut être connecté en tant que l'administrateur.
+      operationId: updatebug_report
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de bug_report '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+        - in: body
+          name: body
+          description: Updated bug_report object
+          required: true
+          schema:
+            $ref: '#/definitions/bug_report'
+      responses:
+        '200':
+          description: mise à jour de l'bug_report
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: bug_report introuvable
+    delete:
+      tags:
+        - bug_report
+      summary: Supprimer un bug_report
+      description: Il faut être connecté en tant que l'administrateur
+      operationId: deletebug_report
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id de l'bug_report
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: bug_report supprimé
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: bug_report introuvable
+  /conversation/register:
+    post:
+      tags:
+        - conversation
+      summary: Insérer un conversation
+      description:  Il faut être connecté en tant que l'administrateur. ? obligatoire. id pas nécessaire 
+      operationId: Insertconversation
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Insérer un conversation object
+          required: true
+          schema:
+            $ref: '#/definitions/conversation'
+      responses:
+        default:
+          description: conversation créé
+
+  /conversation/:
+    get:
+      tags:
+        - conversation
+      summary: Obtenir la liste des données d'conversation
+      description: ''
+      operationId: getconversationList
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/conversation'
+        '400':
+          description: Invalid conversationname supplied
+        '404':
+          description: conversation not found
+  '/conversation/{id}':
+    put:
+      tags:
+        - conversation
+      summary: conversation mis à jour
+      description: Il faut être connecté en tant que l'administrateur.
+      operationId: updateconversation
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de conversation '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+        - in: body
+          name: body
+          description: Updated conversation object
+          required: true
+          schema:
+            $ref: '#/definitions/conversation'
+      responses:
+        '200':
+          description: mise à jour de l'conversation
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: conversation introuvable
+    delete:
+      tags:
+        - conversation
+      summary: Supprimer un conversation
+      description: Il faut être connecté en tant que l'administrateur
+      operationId: deleteconversation
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id de l'conversation
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: conversation supprimé
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: conversation introuvable
+  /lift/register:
+    post:
+      tags:
+        - lift
+      summary: Insérer un lift
+      description:  Il faut être connecté en tant que l'administrateur. date_departude,lat_departure,lng_departure,lat_arrival,lng_arrival obligatoire. id pas nécessaire 
+      operationId: Insertlift
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Insérer un lift object
+          required: true
+          schema:
+            $ref: '#/definitions/lift'
+      responses:
+        default:
+          description: lift créé
+
+  /lift/:
+    get:
+      tags:
+        - lift
+      summary: Obtenir la liste des données d'lift
+      description: ''
+      operationId: getliftList
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/lift'
+        '400':
+          description: Invalid liftname supplied
+        '404':
+          description: lift not found
+  '/lift/{id}':
+    put:
+      tags:
+        - lift
+      summary: lift mis à jour
+      description: Il faut être connecté en tant que l'administrateur.
+      operationId: updatelift
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de lift '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+        - in: body
+          name: body
+          description: Updated lift object
+          required: true
+          schema:
+            $ref: '#/definitions/lift'
+      responses:
+        '200':
+          description: mise à jour de l'lift
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: lift introuvable
+    delete:
+      tags:
+        - lift
+      summary: Supprimer un lift
+      description: Il faut être connecté en tant que l'administrateur
+      operationId: deletelift
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id de l'lift
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: lift supprimé
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: lift introuvable
+  /message/register:
+    post:
+      tags:
+        - message
+      summary: Insérer un message
+      description:  Il faut être connecté en tant que l'administrateur. conversation_id obligatoire. id pas nécessaire 
+      operationId: Insertmessage
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Insérer un message object
+          required: true
+          schema:
+            $ref: '#/definitions/message'
+      responses:
+        default:
+          description: message créé
+
+  /message/:
+    get:
+      tags:
+        - message
+      summary: Obtenir la liste des données d'message
+      description: ''
+      operationId: getmessageList
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/message'
+        '400':
+          description: Invalid messagename supplied
+        '404':
+          description: message not found
+  '/message/{id}':
+    put:
+      tags:
+        - message
+      summary: message mis à jour
+      description: Il faut être connecté en tant que l'administrateur.
+      operationId: updatemessage
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de message '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+        - in: body
+          name: body
+          description: Updated message object
+          required: true
+          schema:
+            $ref: '#/definitions/message'
+      responses:
+        '200':
+          description: mise à jour de l'message
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: message introuvable
+    delete:
+      tags:
+        - message
+      summary: Supprimer un message
+      description: Il faut être connecté en tant que l'administrateur
+      operationId: deletemessage
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id de l'message
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: message supprimé
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: message introuvable
+  /place/register:
+    post:
+      tags:
+        - place
+      summary: Insérer un place
+      description:  Il faut être connecté en tant que l'administrateur. lat,lng,name obligatoire. id pas nécessaire 
+      operationId: Insertplace
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Insérer un place object
+          required: true
+          schema:
+            $ref: '#/definitions/place'
+      responses:
+        default:
+          description: place créé
+
+  /place/:
+    get:
+      tags:
+        - place
+      summary: Obtenir la liste des données d'place
+      description: ''
+      operationId: getplaceList
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/place'
+        '400':
+          description: Invalid placename supplied
+        '404':
+          description: place not found
+  '/place/{id}':
+    put:
+      tags:
+        - place
+      summary: place mis à jour
+      description: Il faut être connecté en tant que l'administrateur.
+      operationId: updateplace
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de place '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+        - in: body
+          name: body
+          description: Updated place object
+          required: true
+          schema:
+            $ref: '#/definitions/place'
+      responses:
+        '200':
+          description: mise à jour de l'place
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: place introuvable
+    delete:
+      tags:
+        - place
+      summary: Supprimer un place
+      description: Il faut être connecté en tant que l'administrateur
+      operationId: deleteplace
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id de l'place
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: place supprimé
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: place introuvable
+  /sentence/register:
+    post:
+      tags:
+        - sentence
+      summary: Insérer un sentence
+      description:  Il faut être connecté en tant que l'administrateur. title obligatoire. id pas nécessaire 
+      operationId: Insertsentence
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Insérer un sentence object
+          required: true
+          schema:
+            $ref: '#/definitions/sentence'
+      responses:
+        default:
+          description: sentence créé
+
+  /sentence/:
+    get:
+      tags:
+        - sentence
+      summary: Obtenir la liste des données d'sentence
+      description: ''
+      operationId: getsentenceList
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/sentence'
+        '400':
+          description: Invalid sentencename supplied
+        '404':
+          description: sentence not found
+  '/sentence/{id}':
+    put:
+      tags:
+        - sentence
+      summary: sentence mis à jour
+      description: Il faut être connecté en tant que l'administrateur.
+      operationId: updatesentence
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de sentence '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+        - in: body
+          name: body
+          description: Updated sentence object
+          required: true
+          schema:
+            $ref: '#/definitions/sentence'
+      responses:
+        '200':
+          description: mise à jour de l'sentence
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: sentence introuvable
+    delete:
+      tags:
+        - sentence
+      summary: Supprimer un sentence
+      description: Il faut être connecté en tant que l'administrateur
+      operationId: deletesentence
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id de l'sentence
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: sentence supprimé
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: sentence introuvable
+  /training/register:
+    post:
+      tags:
+        - training
+      summary: Insérer un training
+      description:  Il faut être connecté en tant que l'administrateur. name,start_date,end_date obligatoire. id pas nécessaire 
+      operationId: Inserttraining
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Insérer un training object
+          required: true
+          schema:
+            $ref: '#/definitions/training'
+      responses:
+        default:
+          description: training créé
+
+  /training/:
+    get:
+      tags:
+        - training
+      summary: Obtenir la liste des données d'training
+      description: ''
+      operationId: gettrainingList
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/training'
+        '400':
+          description: Invalid trainingname supplied
+        '404':
+          description: training not found
+  '/training/{id}':
+    put:
+      tags:
+        - training
+      summary: training mis à jour
+      description: Il faut être connecté en tant que l'administrateur.
+      operationId: updatetraining
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de training '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+        - in: body
+          name: body
+          description: Updated training object
+          required: true
+          schema:
+            $ref: '#/definitions/training'
+      responses:
+        '200':
+          description: mise à jour de l'training
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: training introuvable
+    delete:
+      tags:
+        - training
+      summary: Supprimer un training
+      description: Il faut être connecté en tant que l'administrateur
+      operationId: deletetraining
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id de l'training
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: training supprimé
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: training introuvable
+  /variable/register:
+    post:
+      tags:
+        - variable
+      summary: Insérer un variable
+      description:  Il faut être connecté en tant que l'administrateur. ? obligatoire. id pas nécessaire 
+      operationId: Insertvariable
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Insérer un variable object
+          required: true
+          schema:
+            $ref: '#/definitions/variable'
+      responses:
+        default:
+          description: variable créé
+
+  /variable/:
+    get:
+      tags:
+        - variable
+      summary: Obtenir la liste des données d'variable
+      description: ''
+      operationId: getvariableList
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/variable'
+        '400':
+          description: Invalid variablename supplied
+        '404':
+          description: variable not found
+  '/variable/{id}':
+    put:
+      tags:
+        - variable
+      summary: variable mis à jour
+      description: Il faut être connecté en tant que l'administrateur.
+      operationId: updatevariable
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de variable '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+        - in: body
+          name: body
+          description: Updated variable object
+          required: true
+          schema:
+            $ref: '#/definitions/variable'
+      responses:
+        '200':
+          description: mise à jour de l'variable
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: variable introuvable
+    delete:
+      tags:
+        - variable
+      summary: Supprimer un variable
+      description: Il faut être connecté en tant que l'administrateur
+      operationId: deletevariable
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id de l'variable
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: variable supprimé
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: variable introuvable
+  /variable_value/register:
+    post:
+      tags:
+        - variable_value
+      summary: Insérer un variable_value
+      description:  Il faut être connecté en tant que l'administrateur. ? obligatoire. id pas nécessaire 
+      operationId: Insertvariable_value
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Insérer un variable_value object
+          required: true
+          schema:
+            $ref: '#/definitions/variable_value'
+      responses:
+        default:
+          description: variable_value créé
+
+  /variable_value/:
+    get:
+      tags:
+        - variable_value
+      summary: Obtenir la liste des données d'variable_value
+      description: ''
+      operationId: getvariable_valueList
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/variable_value'
+        '400':
+          description: Invalid variable_valuename supplied
+        '404':
+          description: variable_value not found
+  '/variable_value/{id}':
+    put:
+      tags:
+        - variable_value
+      summary: variable_value mis à jour
+      description: Il faut être connecté en tant que l'administrateur.
+      operationId: updatevariable_value
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de variable_value '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+        - in: body
+          name: body
+          description: Updated variable_value object
+          required: true
+          schema:
+            $ref: '#/definitions/variable_value'
+      responses:
+        '200':
+          description: mise à jour de l'variable_value
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: variable_value introuvable
+    delete:
+      tags:
+        - variable_value
+      summary: Supprimer un variable_value
+      description: Il faut être connecté en tant que l'administrateur
+      operationId: deletevariable_value
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id de l'variable_value
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: variable_value supprimé
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: variable_value introuvable
+  /auth/login:
+    post:
+      tags:
+        - admin
+      summary: Enregistre l'administrateur ou l'utilisateur dans le système
+      description: ''
+      operationId: loginadmin
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: email
+          in: query
+          description: email de connexion
+          required: true
+          type: string
+        - name: password
+          in: query
+          description: password de connexion
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 'access_token: token,login_user:''admin'' or ''user'''
+          schema:
+            type: string
+        '400':
+          description: Email ou mot de passe incorrect
+  /auth/:
+    get:
+      tags:
+        - admin
+      summary: Obtenir la liste des données d'administration
+      description: ''
+      operationId: getadminList
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/admin'
+        '400':
+          description: Invalid adminname supplied
+        '404':
+          description: admin not found
+  '/auth/{id}':
+    put:
+      tags:
+        - admin
+      summary: Administrateur mis à jour
+      description: Il faut être connecté en tant que l'administrateur.
+      operationId: updateadmin
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de l''administrateur '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+        - in: body
+          name: body
+          description: Updated admin object
+          required: true
+          schema:
+            $ref: '#/definitions/admin'
+      responses:
+        '200':
+          description: mise à jour de l'administrateur
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: Admin introuvable
+    delete:
+      tags:
+        - admin
+      summary: Supprimer un administrateur
+      description: Il faut être connecté en tant que l'administrateur.
+      operationId: deleteadmin
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id de l'administrateur
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: administrateur supprimé
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: Admin introuvable
+securityDefinitions:
+  petplace_auth:
+    type: oauth2
+    authorizationUrl: 'http://petplace.swagger.io/oauth/dialog'
+    flow: implicit
+    scopes:
+      'write:pets': modify pets in your account
+      'read:pets': read your pets
+  api_key:
+    type: apiKey
+    name: api_key
+    in: header
+definitions:
+  admin:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      firstname:
+        type: string
+      lastname:
+        type: string
+      email:
+        type: string
+        format: email
+      password:
+        type: string
+        format: password
+      status:
+        type: boolean
+    json:
+      name: data
+  alert:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      lat:
+        type: number
+        format: float
+      lng:
+        type: number
+        format: float
+      status:
+        type: integer
+        format: int32
+      created_at:
+        type: string
+        format: date
+      updated_at:
+        type: string
+        format: date
+      user_id:
+        $ref: '#/definitions/user'
+    xml:
+      name: alert
+  bug_report:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      description:
+        type: string
+      create_at:
+        type: string
+        format: date
+      update_at:
+        type: string
+        format: date
+      user_id:
+        $ref: '#/definitions/user'
+    xml:
+      name: bug_report
+  conversation:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+    xml:
+      name: conversation
+  lift:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      place_max:
+        format: int64
+      date_departure:
+        type: string
+        format: date
+      lat_departure:
+        type: number
+        format: float
+      lng_departure:
+        type: number
+        format: float
+      lat_arrival:
+        type: number
+        format: float
+      lng_arrival:
+        type: number
+        format: float
+      take:
+        type: integer
+        format: int64
+      status:
+        type: integer
+        format: int64
+      create_at:
+        type: string
+        format: date
+      update_at:
+        type: string
+        format: date
+      conversation_id:
+        $ref: '#/definitions/conversation'
+    xml:
+      name: lift
+  training_has_place:
+    type: object
+    properties:
+      training_id:
+        $ref: '#/definitions/training'
+      place_id:
+        $ref: '#/definitions/place'
+    xml:
+      name: training_has_place
+  training:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      start_date:
+        type: string
+        format: date
+      end_date:
+        type: string
+        format: date
+      status:
+        type: boolean
+    xml:
+      name: training
+  place:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      lat:
+        type: number
+        format: float
+      lng:
+        type: number
+        format: float
+      address:
+        type: string
+    xml:
+      name: place
+  sentence:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      title:
+        type: string
+      sentence:
+        type: string
+    xml:
+      name: sentence
+  message:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      create_at:
+        type: string
+        format: date
+      sentence_id:
+        $ref: '#/definitions/sentence'
+      conversation_id:
+        $ref: '#/definitions/conversation'
+    xml:
+      name: message
+  user:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      firstname:
+        type: string
+      lastname:
+        type: string
+      address:
+        type: string
+      birthday:
+        type: string
+      phone:
+        type: string
+      password:
+        type: string
+        format: password
+      email:
+        type: string
+        format: email
+      status:
+        type: boolean
+      immatriculation:
+        type: string
+      lng:
+        type: number
+        format: float
+      lat:
+        type: number
+        format: float
+      terms_use:
+        type: boolean
+      created_at:
+        type: string
+        format: date
+      updated_at:
+        type: string
+        format: date
+      training_id:
+        $ref: '#/definitions/training'
+    xml:
+      name: user
+  user_has_lift:
+    type: object
+    properties:
+      user_id:
+        $ref: '#/definitions/user'
+      lift_id:
+        $ref: '#/definitions/lift'
+      driver:
+        type: integer
+        format: int64
+    xml:
+      name: user_has_lift
+  user_has_place:
+    type: object
+    properties:
+      ser_id:
+        $ref: '#/definitions/user'
+      place_id:
+        $ref: '#/definitions/place'
+    xml:
+      name: user_has_place
+  variable:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      sentence_id:
+        $ref: '#/definitions/sentence'
+      name:
+        type: string
+    xml:
+      name: variable
+  variable_value:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      value:
+        type: integer
+        format: int64
+      message_id:
+        $ref: '#/definitions/message'
+      variable_id:
+        $ref: '#/definitions/variable'
+    xml:
+      name: variable_value
+  ApiResponse:
+    type: object
+    properties:
+      code:
+        type: boolean
+      type:
+        type: string
+      message:
+        type: string
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'

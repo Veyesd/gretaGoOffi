@@ -46,39 +46,39 @@ router.post('/login', (req, res) => {
 
         User.findAll({ where: { email: req.body.email } })
 
-        .then(result => {
-    
-          // Verification si l'utilisateur existe
-  
-          if (result.length === 0) {
-    
-            return res.status(401).json({ message: 'Compte inexistant' })
-          }
-    
-          //MISE EN FORME DU RESULT
-          var user = JSON.parse(JSON.stringify(result))[0]
-    
-    
-          //VERIFICATION SI LE MOT DE PASSE EST BON
-          if (!bcrypt.compareSync(req.body.password, user.password)) {
-            // res.send("Mot de passe incorrect")
-            return res.status(400).json({ message: "Mot de passe incorrect" })
-          }
-    
-          // Création du token
-          const token = jwt.sign({
-            id: user.id,
-            email: user.email,
-    
-          }, process.env.JWR_SECRET, { expiresIn: process.env.JWT_DIRING })
-    
-    
-          return res.json({ access_token: token,login_user:'user' })
-        })
-    
-    
+          .then(result => {
+
+            // Verification si l'utilisateur existe
+
+            if (result.length === 0) {
+
+              return res.status(401).json({ message: 'Compte inexistant' })
+            }
+
+            //MISE EN FORME DU RESULT
+            var user = JSON.parse(JSON.stringify(result))[0]
+
+
+            //VERIFICATION SI LE MOT DE PASSE EST BON
+            if (!bcrypt.compareSync(req.body.password, user.password)) {
+              // res.send("Mot de passe incorrect")
+              return res.status(400).json({ message: "Mot de passe incorrect" })
+            }
+
+            // Création du token
+            const token = jwt.sign({
+              id: user.id,
+              email: user.email,
+
+            }, process.env.JWR_SECRET, { expiresIn: process.env.JWT_DIRING })
+
+
+            return res.json({ access_token: token, login_user: 'user' })
+          })
+
+
           .catch(err => res.json({ message: 'Database error user', error: err }))
-      
+
       }
       //----------------------------------------------
 
@@ -100,10 +100,10 @@ router.post('/login', (req, res) => {
       }, process.env.JWR_SECRET, { expiresIn: process.env.JWT_DIRING })
 
 
-      return res.json({ access_token: token,login_user:'admin' })
+      return res.json({ access_token: token, login_user: 'admin' })
     })
-     // .catch(err => res.json({ message: 'Database error admin', error: err }))
-  
+  // .catch(err => res.json({ message: 'Database error admin', error: err }))
+
 })
 
 //-------------------------------------------
@@ -136,7 +136,7 @@ router.post('/register', (req, res) => {
       if (data.length === 0) {
         // TOUT VA BIEN, ajout de l'utilisateur dans la table admins
         Admin.create(req.boby)
-          .then(data => res.json({ message: "Admin created" }))
+          .then(data => res.json({ message: "Administrateur créé" }))
           .catch(err => res.json({ message: 'Database error', error: err }))
         return res.json({ message: 'test OK' }) //ici vide car pas de correspondance
       } else {
@@ -152,22 +152,22 @@ router.post('/register', (req, res) => {
 router.put('/:id', (req, res) => {
 
   // VERIFIER SI LE CHAMPS ID EST PRESENT
-  if (!req.body.id) {
+  if (!req.params.id) {
     return res.status(400).json({ message: "Informations manquantes, Laquelle ??" })
   }
 
   // Vérifier si il existe dans la table admin
-  Admin.findAll({ where: { id: req.body.id } })
+  Admin.findAll({ where: { id: req.params.id } })
     .then(data => {
-      if (data.length !== 0) {
-        return res.json({ message: 'admin introuvable' }) // Le username existe deja dans la table
+      if (data.length == 0) {
+        return res.status(404).json({ message: 'admin introuvable' }) // Le username existe deja dans la table
       }
 
       // TOUT VA BIEN, modification de l'utilisateur
-      Admin.update(req.boby, {
-        where: { id: req.body.id }
+      Admin.update(req.body, {
+        where: { id: req.params.id }
       })
-        .then(data => res.json({ message: "admin update" }))
+        .then(data => res.status(200).json({ message: "mise à jour de l'administrateur" }))
         .catch(err => res.json({ message: 'Database error', error: err }))
     })
     .catch(err => res.json({ message: 'Database error', error: err }))
@@ -178,9 +178,24 @@ router.put('/:id', (req, res) => {
 // Delete [DELETE /auth/:id]
 //-------------------------------------------
 router.delete('/:id', (req, res) => {
-  Admin.destroy({ where: { id: req.params._id } })
-    .then(() => {
-      return res.json({ data: 'admin deleted' })
+  // VERIFIER SI LE CHAMPS ID EST PRESENT
+  if (!req.params.id) {
+    return res.status(400).json({ message: "Informations manquantes, Laquelle ??" })
+  }
+
+  // Vérifier si il existe dans la table admin
+  Admin.findAll({ where: { id: req.params.id } })
+    .then(data => {
+      if (data.length == 0) {
+        return res.status(404).json({ message: 'admin introuvable' }) // Le username existe deja dans la table
+      }
+
+      Admin.destroy({ where: { id: req.params.id } })
+        .then(() => {
+          return res.status(200).json({ data: 'administrateur supprimé' })
+        })
+        .catch(err => res.json({ message: 'Database error', error: err }))
+      
     })
     .catch(err => res.json({ message: 'Database error', error: err }))
 

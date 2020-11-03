@@ -22,6 +22,7 @@ var message_router = require('./routers/message')
 var sentence_router = require('./routers/sentence')
 var variable_value_router = require('./routers/variable_value')
 
+
 app.use(cors()).use(morgan('tiny'))
 app.use(express())
 app.use(express.urlencoded({ extended: true }))
