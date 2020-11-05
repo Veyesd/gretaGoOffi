@@ -1,0 +1,24 @@
+:root {
+    --ion-safe-area-top: 20px;
+    --ion-safe-area-bottom: 22px;
+  }
+  ion-input{
+    background-color: rgb(251, 251, 251);
+    border : 1px #154F9A solid;
+    color: white; 
+    border-radius: 20px;
+    width: 90%;
+    margin: 10px auto;
+  }
+  ion-items{
+      display: flex;
+      flex-direction: column;
+  }
+  ion-radio-group{
+    display: flex;
+    align-items: center;
+  }
+  div{
+    margin: 40px 0px;
+  }
+

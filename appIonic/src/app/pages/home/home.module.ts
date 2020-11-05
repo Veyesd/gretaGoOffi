@@ -9,15 +9,16 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { NavComponent } from 'src/app/components/nav/nav.component';
 import { TripComponent } from '../../components/trip/trip.component';
+import { ModalComponent } from '../../components/modal/modal.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule, 
+    HomePageRoutingModule,
  
   ],
-  declarations: [HomePage, NavComponent, TripComponent]
+  declarations: [HomePage, NavComponent, TripComponent, ModalComponent],
 })
 export class HomePageModule {}

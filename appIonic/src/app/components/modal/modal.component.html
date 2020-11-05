@@ -1,0 +1,40 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Rechercher un trajet</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Fermer</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <ion-list class="ion-padding">
+    <div>
+      <ion-label> Lieu de départ : </ion-label>
+      <ion-input list="lieux" type="text"></ion-input>
+      <ion-radio-group value="biff">
+        <ion-label>Proche de ma position</ion-label>
+        <ion-radio slot="start" color="tertiary"></ion-radio>
+      </ion-radio-group>
+    </div>
+
+    <div>
+      <ion-label> Lieu d'arrivé :</ion-label>
+      <ion-input list="lieux" type="text"></ion-input>
+      <datalist id="lieux">
+        <option value="Pau"></option>
+        <option value="Lycée saint cricq"></option>
+        <option value="Lycée saint john perse"></option>
+      </datalist>
+    </div>
+
+    <div>
+      <ion-label> Date :</ion-label>
+      <ion-input type="date"></ion-input>
+    </div>
+
+    <div>
+      <ion-label> Heure de départ :</ion-label>
+      <ion-input type="text"></ion-input>
+    </div>
+  </ion-list>
+</ion-content>

@@ -1,9 +1,62 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>trip</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-thumbnail slot="start">
+      <ion-img src="assets/logo.png"></ion-img>
+    </ion-thumbnail>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+    <ion-item>
+  <ion-avatar>
+    <img src="assets/avatar.png" alt="avatar" />
+  </ion-avatar>
+<div id="infoTrajet">
+      <ion-label class="name"> Sam </ion-label>
+      <ion-card-subtitle>2 places restantes</ion-card-subtitle>
+      <ion-card-subtitle>Trajet ponctuel</ion-card-subtitle>
+      <ion-card-title>10/05/1920</ion-card-title>
+</div>
 
+  </ion-item>
+
+  <div id="trajet">
+    <div id="departArrivee">
+      <p>Départ</p>
+      <p>Arrivée</p>
+    </div>
+    <div class="fleche">
+      <div></div>
+      <ion-icon name="caret-down-outline"></ion-icon>
+    </div>
+    <div class="LieuHoraire">
+      <p>
+        Pau halles <br />
+        8h05
+      </p>
+      <p>
+        Hélioparc<br />
+        8h25
+      </p>
+    </div>
+  </div>
+  <ion-thumbnail>
+    <ion-img src="assets/map.jpg"></ion-img>
+  </ion-thumbnail>
+
+  <p>
+    Derscription of type and scrambled it to make a type specimen book. It has
+    survived not only five centuries, but also the leap into electronic
+    typesetting, remaining essentially unchanged. It was popularised in the
+    1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+    and more recently with desktop publishing software like Aldus PageMaker
+    including versions of Lorem Ipsum.
+  </p>
+
+  <div class="inscription">
+    <button>Je m'inscris</button>
+  </div>
 </ion-content>

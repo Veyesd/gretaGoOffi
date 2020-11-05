@@ -26,6 +26,14 @@ const routes: Routes = [
   {
     path: 'messaging',
     loadChildren: () => import('./pages/messaging/messaging.module').then( m => m.MessagingPageModule)
+  },
+  {
+    path: 'password',
+    loadChildren: () => import('./password/password.module').then( m => m.PasswordPageModule)
+  },
+  {
+    path: 'validate-message',
+    loadChildren: () => import('./pages/validate-message/validate-message.module').then( m => m.ValidateMessagePageModule)
   }
 ];
 @NgModule({
