@@ -5,7 +5,7 @@ const sequelize = require('../db.config')
 
 // CHARGEMENT DU MODEL 
 const Variable = require('../models/variable')(sequelize, Sequelize.DataTypes);
-const Sentence = require('../models/Sentence')(sequelize, Sequelize.DataTypes);
+const Sentence = require('../models/sentence')(sequelize, Sequelize.DataTypes);
 
 Variable.belongsTo(Sentence, {
   foreignKey: "sentence_id",
