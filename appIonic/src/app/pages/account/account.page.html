@@ -1,9 +1,99 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>account</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-thumbnail slot="start">
+      <ion-img src="assets/logo.png"></ion-img>
+    </ion-thumbnail>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  <ion-item lines="none">
+    <ion-avatar>
+      <img src="assets/avatar.png" alt="avatar" />
+    </ion-avatar>
+    <div id="name">
+      <ion-title> Sam </ion-title>
+    </div>
+  </ion-item>
+  <ion-item lines="none">
+    <p>
+      Derscription of type and scrambled it to make a type specimen book. It has
+      survived not only five centuries, but also the leap into electronic
+      typesetting, remaining essentially unchanged. It was popularised in the
+      1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+    </p>
+  </ion-item>
 
+  <ion-list>
+    <ion-item *ngFor="let entry of form">
+      <ion-label>{{entry.title}}<br/><input *ngIf="entry.title !== 'Permis : '" [(ngModel)]="entry.val" placeholder="{{entry.val}}"></ion-label>
+      <ion-toggle [(ngModel)]="entry.isChecked" name="{{entry.val}}"></ion-toggle>
+      <span [ngClass]="{'visible' : entry.isChecked}"></span>
+    </ion-item>
+    <ion-item>
+      <ion-label>Changer mot de passe</ion-label>
+    </ion-item>
+    <ion-item id="notifs">
+      <ion-grid>
+        <ion-row>
+          <ion-label position="start">Recevoir les alertes par :</ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-col class="choiceAlert">
+            <ion-label>SMS</ion-label>
+            <ion-checkbox name="sms">SMS</ion-checkbox>
+          </ion-col>
+          <ion-col class="choiceAlert">
+            <ion-label>Email</ion-label>
+            <ion-checkbox name="email" checked>Email</ion-checkbox>
+          </ion-col>
+          <ion-col class="choiceAlert">
+            <ion-label>Notifications</ion-label>
+            <ion-checkbox name="notification">Notifications</ion-checkbox>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+
+  <div class="mesTrajets" [ngClass]="{'close' : showTrip}">
+    <button class="ion-activatable ripple-parent voir" *ngIf="!showTrip"(click)="show()">Trajets <ion-ripple-effect></ion-ripple-effect></button>
+    <button class="ion-activatable ripple-parent fermer" *ngIf="showTrip"(click)="show()">Fermer X<ion-ripple-effect></ion-ripple-effect></button>
+  </div>
+  <div *ngIf="showTrip">
+    <ion-item lines="none">
+      <!-- <ion-button fill="outline" size="small">En cours</ion-button>
+    <ion-button fill="outline" size="small">Terminés</ion-button>
+    <ion-button fill="outline" size="small">Passager</ion-button>
+    <ion-button fill="outline" size="small">Conducteur</ion-button> -->
+    <ion-tabs lines="none">
+      <!-- Tab bar -->
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button  tab="enCours" (click)="getSelected('en cours')" selected>
+          <ion-label>En cours</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="termines" (click)="getSelected('termines')">
+          <ion-label>Terminés</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="passager" (click)="getSelected('passager')">
+          <ion-label>Passager</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="conducteur" (click)="getSelected('conducteur')">
+          <ion-label>Conducteur</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+
+    </ion-item>
+    <app-trip></app-trip>
+    <app-trip></app-trip>
+    <app-trip></app-trip>
+
+    </div>
 </ion-content>

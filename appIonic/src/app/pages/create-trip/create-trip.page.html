@@ -1,9 +1,55 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>createTrip</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-thumbnail slot="start">
+      <ion-img src="assets/logo.png"></ion-img>
+    </ion-thumbnail>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-col>
+      <h1>Je propose un trajet</h1>
+    </ion-col>
 
+    <ion-col>
+      <ion-label> Date :</ion-label>
+      <ion-item lines="none">
+        <ion-input type="date"></ion-input>
+        <ion-label>Récurrent</ion-label>
+        <ion-checkbox name="recurrent"></ion-checkbox>
+      </ion-item>
+    </ion-col>
+
+    <ion-col>
+      <ion-label> Départ : </ion-label>
+      <ion-item lines="none">
+        <ion-input 	size="1" list="lieux" type="text" placeholder="lieu"></ion-input>
+        <ion-input type="text" placeholder="heure"></ion-input>
+      </ion-item>
+    </ion-col>
+
+    <ion-col>
+      <ion-label>Arrivée : </ion-label>
+      <ion-item lines="none">
+        <ion-input list="lieux" type="text" placeholder="lieu"></ion-input>
+        <ion-input type="text" placeholder="heure"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-item lines="none">
+      <ion-label> Nombre de place : </ion-label>
+      <ion-input type="number" min="1"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-textarea
+        placeholder="Entrez ici des informations complémentaires au trajet"
+      ></ion-textarea>
+    </ion-item>
+    <div class="valider">
+      <button type="submit">Valider</button>
+    </div>
+  </ion-grid>
 </ion-content>

@@ -1,0 +1,79 @@
+.mesTrajets {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+p {
+  text-align: justify;
+}
+ion-toggle {
+  --handle-background-checked: #fff url(/assets/voiture.svg) no-repeat center /
+    contain;
+  --background: #154f9a;
+  --background-checked: #f19021;
+}
+ion-toggle + span:after {
+  content: "invisible";
+}
+ion-toggle + span {
+  font-size: 0.8rem;
+  color: rgb(205, 204, 207);
+  margin-left: 10px;
+}
+.visible:after{
+    content: "visible";
+    color : rgb(57, 146, 94);
+}
+
+#notif ion-label {
+  display: block;
+}
+ion-avatar {
+  width: 100px;
+  height: 100px;
+}
+#name {
+  margin-left: 30px;
+  padding: 20px 0px;
+}
+ion-title {
+  font-size: 1.5rem;
+}
+.choiceAlert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.choiceAlert ion-label {
+  font-size: 0.8rem;
+}
+input{
+    border:none;
+    cursor: pointer;
+}
+
+ion-content button.voir{
+  width:100px;
+  height:100px;
+  margin:auto;
+  border : 3px solid #F19021;
+  border-radius: 50%;
+  color : #F19021;
+  font-weight: 800;
+  background-color: white;
+  line-height: 1.5em;
+}
+
+button.fermer{
+background-color: #fff;
+color: #154f9a;
+}
+.close{
+  justify-content: flex-end;
+  padding: 10px;
+}
+ion-tab-button{
+  --color-selected: #F19021;
+  font-size: 0.9rem;
+  margin: 5px;
+}
