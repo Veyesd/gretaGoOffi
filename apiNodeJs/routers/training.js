@@ -46,7 +46,12 @@ router.get('/:id', function (req, res) {
 }
 
 // Vérifier si il existe dans la table user
-Training.findOne({ where: { id: id }, raw: true})
+Training.findOne({ where: { id: id },
+  include: [
+    { model: Place, as: 'training_place' ,
+    keyType: Sequelize.INTEGER
+    }
+  ]})
 .then(data => {
   return res.json({ data: data})
 })

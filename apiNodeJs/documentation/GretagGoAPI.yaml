@@ -80,7 +80,34 @@ paths:
           description: Invalid username supplied
         '404':
           description: user not found
-  '/user/{id}':
+  /user/{id}:
+    get:
+      tags:
+        - user
+      summary: get user data
+      description: seulement un 
+      operationId: getuserdata
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de user '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/user'
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: user introuvable
     put:
       tags:
         - user
@@ -133,6 +160,445 @@ paths:
           description: 'Informations manquantes, Laquelle ??'
         '404':
           description: user introuvable
+  /user_has_lift/register:
+    post:
+      tags:
+        - user_has_lift
+      summary: Insérer un user_has_lift
+      description:   user_id , lift_id , driver obligatoire. id pas nécessaire 
+      operationId: Insertuser_has_lift
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Insérer un user_has_lift object
+          required: true
+          schema:
+            $ref: '#/definitions/user_has_lift'
+      responses:
+        default:
+          description: user user_has_lift         
+  /user_has_lift/:
+    get:
+      tags:
+        - user_has_lift
+      summary: Obtenir la liste des données d'user_has_lift
+      description: ''
+      operationId: getuser_has_liftList
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/user_has_lift'
+        '400':
+          description: Invalid user_has_liftname supplied
+        '404':
+          description: user_has_lift not found
+  '/user_has_lift/{id}':
+    get:
+      tags:
+        - user_has_lift
+      summary: get user_has_lift data
+      description: seulement un 
+      operationId: getuser_has_liftdata
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de user_has_lift '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/user_has_lift'
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: user_has_lift introuvable
+    put:
+      tags:
+        - user_has_lift
+      summary: user_has_lift mis à jour
+      description: Il faut être connecté en tant que l'administrateur.
+      operationId: updateuser_has_lift
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de user_has_lift '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+        - in: body
+          name: body
+          description: Updated user_has_lift object
+          required: true
+          schema:
+            $ref: '#/definitions/user_has_lift'
+      responses:
+        '200':
+          description: mise à jour de l'user_has_lift
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: user_has_lift introuvable
+    delete:
+      tags:
+        - user_has_lift
+      summary: Supprimer un user_has_lift
+      description: Supprimer un user_has_lift
+      operationId: deleteuser_has_lift
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id de l'user_has_lift
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: user_has_lift supprimé
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: user_has_lift introuvable      
+  /user_has_place/register:
+    post:
+      tags:
+        - user_has_place
+      summary: Insérer un user_has_place
+      description:  user_id , place_id  obligatoire. id pas nécessaire 
+      operationId: Insertuser_has_place
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Insérer un user_has_place object
+          required: true
+          schema:
+            $ref: '#/definitions/user_has_place'
+      responses:
+        default:
+          description: user user_has_place         
+  /user_has_place/:
+    get:
+      tags:
+        - user_has_place
+      summary: Obtenir la liste des données d'user_has_place
+      description: ''
+      operationId: getuser_has_placeList
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/user_has_place'
+        '400':
+          description: Invalid user_has_pace supplied
+        '404':
+          description: user_has_place not found
+  /user_has_place/user/{user_id}:
+    get:
+      tags:
+        - user_has_place
+      summary: get user_has_place data
+      description: seulement un 
+      operationId: getuser_has_place_userdata
+      produces:
+        - application/json
+      parameters:
+        - name: user_id
+          in: path
+          description: 'id de user_has_place '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/user_has_place'
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: user_has_lift introuvable
+  /user_has_place/place/{place_id}:
+    get:
+      tags:
+        - user_has_place
+      summary: get user_has_place data
+      description: seulement un 
+      operationId: getuser_has_place_placedata
+      produces:
+        - application/json
+      parameters:
+        - name: place_id
+          in: path
+          description: 'id de user_has_place '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/user_has_place'
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: user_has_place introuvable          
+  /user_has_place/{user_id}/{place_id}:
+    get:
+      tags:
+        - user_has_place
+      summary: get user_has_place data
+      description: seulement un 
+      operationId: getuser_has_place_user_placedata
+      produces:
+        - application/json
+      parameters:
+        - name: user_id
+          in: path
+          description: 'id de user_has_place '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+        - name: place_id
+          in: path
+          description: 'id de user_has_place '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/user_has_place'
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: user_has_place introuvable            
+    delete:
+      tags:
+        - user_has_place
+      summary: Supprimer un user_has_place
+      description: Supprimer un user_has_place
+      operationId: deleteuser_has_place
+      produces:
+        - application/json
+      parameters:
+        - name: user_id
+          in: path
+          description: user_id de l'user_has_place
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+        - name: place_id
+          in: path
+          description: place_id de l'user_has_place
+          required: true
+          type: integer
+          minimum: 1
+          format: int64          
+      responses:
+        '200':
+          description: user_has_place supprimé
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: user_has_place introuvable                    
+  /training_has_place/register:
+    post:
+      tags:
+        - training_has_place
+      summary: Insérer un training_has_place
+      description:  training_id , place_id  obligatoire. id pas nécessaire 
+      operationId: Inserttraining_has_place
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Insérer un training_has_place object
+          required: true
+          schema:
+            $ref: '#/definitions/training_has_place'
+      responses:
+        default:
+          description: user training_has_place         
+  /training_has_place/:
+    get:
+      tags:
+        - training_has_place
+      summary: Obtenir la liste des données d'training_has_place
+      description: ''
+      operationId: gettraining_has_placeList
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/training_has_place'
+        '400':
+          description: Invalid user_has_pace supplied
+        '404':
+          description: training_has_place not found
+  /training_has_place/training/{training_id}:
+    get:
+      tags:
+        - training_has_place
+      summary: get training_has_place data
+      description: seulement un 
+      operationId: gettraining_has_place_trainingdata
+      produces:
+        - application/json
+      parameters:
+        - name: training_id
+          in: path
+          description: 'training_id de training_has_place '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/training_has_place'
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: training_has_place introuvable
+  /training_has_place/place/{place_id}:
+    get:
+      tags:
+        - training_has_place
+      summary: get training_has_place data
+      description: seulement un 
+      operationId: gettraining_has_place_placedata
+      produces:
+        - application/json
+      parameters:
+        - name: place_id
+          in: path
+          description: 'id de training_has_place '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/training_has_place'
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: user_has_lift introuvable          
+  /training_has_place/{training_id}/{place_id}:
+    get:
+      tags:
+        - training_has_place
+      summary: get training_has_place data
+      description: seulement un 
+      operationId: gettraining_has_place_training_placedata
+      produces:
+        - application/json
+      parameters:
+        - name: training_id
+          in: path
+          description: 'training_id de training_has_place '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+        - name: place_id
+          in: path
+          description: 'place_id de training_has_place '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/training_has_place'
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: training_has_place introuvable            
+    delete:
+      tags:
+        - training_has_place
+      summary: Supprimer un training_has_place
+      description: Supprimer un training_has_place
+      operationId: deletetraining_has_place
+      produces:
+        - application/json
+      parameters:
+        - name: training_id
+          in: path
+          description: training_id de l'training_has_place
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+        - name: place_id
+          in: path
+          description: place_id de l'training_has_place
+          required: true
+          type: integer
+          minimum: 1
+          format: int64          
+      responses:
+        '200':
+          description: training_has_place supprimé
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: training_has_place introuvable                            
   /alert/register:
     post:
       tags:
@@ -175,6 +641,33 @@ paths:
         '404':
           description: alert not found
   '/alert/{id}':
+    get:
+      tags:
+        - alert
+      summary: get alert data
+      description: seulement un 
+      operationId: getalertdata
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de alert '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/alert'
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: alert introuvable   
     put:
       tags:
         - alert
@@ -268,6 +761,33 @@ paths:
         '404':
           description: bug_report not found
   '/bug_report/{id}':
+    get:
+      tags:
+        - bug_report
+      summary: get bug_report data
+      description: seulement un 
+      operationId: getbug_reportdata
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de bug_report '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/bug_report'
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: bug_report introuvable
     put:
       tags:
         - bug_report
@@ -361,6 +881,33 @@ paths:
         '404':
           description: conversation not found
   '/conversation/{id}':
+    get:
+      tags:
+        - conversation
+      summary: get conversation data
+      description: seulement un 
+      operationId: getconversationdata
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de conversation '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/conversation'
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: conversation introuvable
     put:
       tags:
         - conversation
@@ -454,6 +1001,33 @@ paths:
         '404':
           description: lift not found
   '/lift/{id}':
+    get:
+      tags:
+        - lift
+      summary: get lift data
+      description: seulement un 
+      operationId: getliftdata
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de lift '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/lift'
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: lift introuvable
     put:
       tags:
         - lift
@@ -547,6 +1121,33 @@ paths:
         '404':
           description: message not found
   '/message/{id}':
+    get:
+      tags:
+        - message
+      summary: get message data
+      description: seulement un 
+      operationId: getmessagedata
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de message '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/message'
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: message introuvable
     put:
       tags:
         - message
@@ -640,6 +1241,33 @@ paths:
         '404':
           description: place not found
   '/place/{id}':
+    get:
+      tags:
+        - place
+      summary: get place data
+      description: seulement un 
+      operationId: getplacedata
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de place '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/place'
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: place introuvable
     put:
       tags:
         - place
@@ -733,6 +1361,33 @@ paths:
         '404':
           description: sentence not found
   '/sentence/{id}':
+    get:
+      tags:
+        - sentence
+      summary: get sentence data
+      description: seulement un 
+      operationId: getsentencedata
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de sentence '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/sentence'
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: sentence introuvable
     put:
       tags:
         - sentence
@@ -826,6 +1481,33 @@ paths:
         '404':
           description: training not found
   '/training/{id}':
+    get:
+      tags:
+        - training
+      summary: get training data
+      description: seulement un 
+      operationId: gettrainingdata
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de training '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/training'
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: training introuvable
     put:
       tags:
         - training
@@ -919,6 +1601,33 @@ paths:
         '404':
           description: variable not found
   '/variable/{id}':
+    get:
+      tags:
+        - variable
+      summary: get variable data
+      description: seulement un 
+      operationId: getvariabledata
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de variable '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/variable'
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: variable introuvable
     put:
       tags:
         - variable
@@ -1012,6 +1721,33 @@ paths:
         '404':
           description: variable_value not found
   '/variable_value/{id}':
+    get:
+      tags:
+        - variable_value
+      summary: get variable_value data
+      description: seulement un 
+      operationId: getvariable_valuedata
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de variable_value '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/variable_value'
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: variable_value introuvable
     put:
       tags:
         - variable_value
@@ -1113,6 +1849,33 @@ paths:
         '404':
           description: admin not found
   '/auth/{id}':
+    get:
+      tags:
+        - admin
+      summary: get admo, data
+      description: seulement un 
+      operationId: getauthdata
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id de admin '
+          required: true
+          type: integer
+          minimum: 1
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/admin'
+        '400':
+          description: 'Informations manquantes, Laquelle ??'
+        '404':
+          description: admin introuvable
     put:
       tags:
         - admin
@@ -1196,7 +1959,7 @@ definitions:
         format: password
       status:
         type: boolean
-    json:
+    xml:
       name: data
   alert:
     type: object
@@ -1256,6 +2019,7 @@ definitions:
         type: integer
         format: int64
       place_max:
+        type: integer
         format: int64
       date_departure:
         type: string
@@ -1407,6 +2171,9 @@ definitions:
   user_has_lift:
     type: object
     properties:
+      id:
+        type: integer
+        format: int64
       user_id:
         $ref: '#/definitions/user'
       lift_id:

@@ -18,11 +18,7 @@ var router = express.Router()
 router.get('', function (req, res) {
 
   Conversation.findAll({
-    include: [
-      { model: User,
-        keyType: Sequelize.INTEGER
-      }
-    ]
+  
   }) 
   .then(data => {
     return res.json({ data: data})

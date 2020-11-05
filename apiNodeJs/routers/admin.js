@@ -146,6 +146,26 @@ router.post('/register', (req, res) => {
     .catch(err => res.json({ message: 'Database error', error: err }))
 
 })
+
+
+//-------------------------------------------
+// Show by id [GET /auth/:id]
+//-------------------------------------------
+router.get('/:id', function (req, res) {
+
+  var id = req.params.id;
+ // Vérifier si le champ id est présent
+ if(!id){
+  return res.status(400).json({ message: 'Informations manquantes'})
+}
+
+// Vérifier si il existe dans la table user
+Admin.findOne({ where: { id: id }})
+.then(data => {
+  return res.status(200).json({ data: data})
+})
+.catch(err => res.json({ message: 'Database error', error: err}))
+});
 //-------------------------------------------
 // Update [PUT /auth/:id]
 //-------------------------------------------

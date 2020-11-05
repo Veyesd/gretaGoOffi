@@ -76,9 +76,23 @@ router.get('/:id', function (req, res) {
 }
 
 // Vérifier si il existe dans la table user
-User.findOne({ where: { id: id }, raw: true})
+User.findOne({ 
+  where: { id: id }, 
+  include: [
+    { model: Training,
+      keyType: Sequelize.INTEGER
+    },
+    { model: Lift, as: 'user_lift' ,
+    keyType: Sequelize.INTEGER
+    },
+    { model: Place, as: 'user_place' ,
+    keyType: Sequelize.INTEGER
+    }
+  ],
+ 
+})
 .then(data => {
-  return res.json({ data: data})
+  return res.status(200).json({ data: data})
 })
 .catch(err => res.json({ message: 'Database error', error: err}))
 });
@@ -115,7 +129,7 @@ User.findOne({ where: { id: id }, raw: true})
     User.update(req.body, {
         where: { id: id}
       })
-      .then(user => res.json({ message: 'User updated', data: user}))
+      .then(user => res.json({ message: '"mise à jour de user', data: user}))
       .catch(err => res.json({ message: 'Database error update', error: err}))
 })
 .catch(err => res.json({ message: 'Database error', error: err}))

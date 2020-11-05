@@ -3,6 +3,7 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('bug_report', {
     id: {
+      autoIncrement: true,
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true

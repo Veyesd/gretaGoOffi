@@ -8,13 +8,9 @@ var router = express.Router()
 const Lift = require('../models/lift')(sequelize, Sequelize.DataTypes);
 const Conversation = require('../models/conversation')(sequelize, Sequelize.DataTypes);
 const User_has_lift=  require('../models/user_has_lift')(sequelize, Sequelize.DataTypes);
-const User=  require('../models/User')(sequelize, Sequelize.DataTypes);
-Conversation.belongsTo(Conversation, {
-  foreignKey: "conversation_id",
-  keyType: Sequelize.INTEGER,
-  sourceKey: "id",
-});
-User.belongsToMany(User, {
+const User=  require('../models/user')(sequelize, Sequelize.DataTypes);
+
+Lift.belongsToMany(User, {
   through: User_has_lift,
   foreignKey: 'lift_id',
   otherKey: 'user_id',
@@ -28,9 +24,7 @@ router.get('', function (req, res) {
 
   Lift.findAll({
     include: [
-      { model: Conversation,
-        keyType: Sequelize.INTEGER
-      },
+ 
       { model: User, as: 'user_lift' ,
       keyType: Sequelize.INTEGER
       },
@@ -54,9 +48,17 @@ router.get('/:id', function (req, res) {
 }
 
 // Vérifier si il existe dans la table user
-Lift.findOne({ where: { id: id }, raw: true})
+Lift.findOne({
+  where: { id: id },
+  include: [
+
+    { model: User, as: 'user_lift' ,
+    keyType: Sequelize.INTEGER
+    },
+  ]
+})
 .then(data => {
-  return res.json({ data: data})
+  return res.status(200).json({ data: data})
 })
 .catch(err => res.json({ message: 'Database error', error: err}))
 });
@@ -106,10 +108,10 @@ router.put('/:id', (req, res) => {
 // Insert  [Post /lift/register] 
 //-------------------------------------------
 router.post('/register', (req, res) => {
-  const { pace_max, date_departure, lat_departure, lng_departure,lat_arrival,lng_arrival,take,status } = req.body;
+  const {  date_departure, lat_departure, lng_departure,lat_arrival,lng_arrival} = req.body;
 
   // Vérification des données en reçues
-  if (!date_departude || !lat_departure || !lng_departure|| !lat_arrival || !lng_arrival) {
+  if (!date_departure || !lat_departure || !lng_departure|| !lat_arrival || !lng_arrival) {
     return res.status(400).json({ message: 'Il manque un paramètre' })
   }
 
@@ -117,7 +119,7 @@ router.post('/register', (req, res) => {
   req.body.updated_at=new Date().toISOString().slice(0, 19).replace('T', ' ');;
 
   Lift.create(req.body)
-    .then(data => res.json({ message: 'Lift created', name: name }))
+    .then(data => res.json({ message: 'Lift created', data: data }))
     .catch(err => res.json({ message: 'Database error', error: err }))
 })
 

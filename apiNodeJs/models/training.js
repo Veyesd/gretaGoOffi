@@ -22,7 +22,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     status: {
       type: DataTypes.INTEGER(1),
-      allowNull: true
+      allowNull: true,
+      defaultValue: 1
     }
   }, {
     sequelize,

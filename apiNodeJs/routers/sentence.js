@@ -12,11 +12,11 @@ var router = express.Router()
 
 
 //-------------------------------------------
-// Show all [GET /alert/]
+// Show all [GET /sentence/]
 //-------------------------------------------
 router.get('', function (req, res) {
 
-  Alert.findAll() 
+  Sentence.findAll() 
   .then(data => {
     return res.json({ data: data})
   })
@@ -24,7 +24,7 @@ router.get('', function (req, res) {
 });
 
 //-------------------------------------------
-// Show by id [GET /alert/:id]
+// Show by id [GET /sentence/:id]
 //-------------------------------------------
 router.get('/:id', function (req, res) {
 
@@ -35,7 +35,7 @@ router.get('/:id', function (req, res) {
 }
 
 // Vérifier si il existe dans la table user
-Alert.findOne({ where: { id: id }, raw: true})
+Sentence.findOne({ where: { id: id }, raw: true})
 .then(data => {
   return res.json({ data: data})
 })
@@ -43,13 +43,13 @@ Alert.findOne({ where: { id: id }, raw: true})
 });
 
 //-------------------------------------------
-// Delete [DELETE /alert/:id]
+// Delete [DELETE /sentence/:id]
 //-------------------------------------------
 router.delete('/:id', function (req, res) {
 
   var id = req.params.id;
 
-  Alert.destroy({
+  Sentence.destroy({
     where: {
       id: id //this will be your id that you want to delete
     }
@@ -63,7 +63,7 @@ router.delete('/:id', function (req, res) {
   });
 });
 //-------------------------------------------
-// Update [PUT /alert/:id]
+// Update [PUT /sentence/:id]
 //-------------------------------------------
 router.put('/:id', function (req, res) {
   var id = req.params.id;
@@ -72,22 +72,22 @@ router.put('/:id', function (req, res) {
   }
 
   // Vérifier si il existe dans la table user
-  Alert.findOne({ where: { id: id }, raw: true})
+  Sentence.findOne({ where: { id: id }, raw: true})
       .then(data => {
           if(data === null){
-              return res.status(400).json({ message: 'alert introuvable'})
+              return res.status(400).json({ message: 'sentence introuvable'})
           }
 
-          Alert.update(req.body, {
+          Sentence.update(req.body, {
               where: { id: id}
             })
-            .then(data => res.json({ message: 'alert updated', data: data}))
+            .then(data => res.json({ message: 'sentence updated', data: data}))
             .catch(err => res.json({ message: 'Database error', error: err}))
       })
       .catch(err => res.json({ message: 'Database error', error: err}))
 })
 //-------------------------------------------
-// Insert  [Post /alert/register] 
+// Insert  [Post /sentence/register] 
 //-------------------------------------------
 router.post('/register', (req, res) => {
   const { title,sentence } = req.body;
@@ -98,12 +98,12 @@ router.post('/register', (req, res) => {
   }
 
   // Verification si l'utilisateur existe déjà
-  Alert.findOne({ where: { title: title }, raw: true })
+  Sentence.findOne({ where: { title: title }, raw: true })
     .then(data => {
       if (data !== null) {
         return res.status(400).json({ message: 'Ce sentence existe déjà !' })
       } else {
-        Alert.create(req.body)
+        Sentence.create(req.body)
           .then(data => res.json({ message: 'sentence created', name: name }))
           .catch(err => res.json({ message: 'Database error', error: err }))
       }

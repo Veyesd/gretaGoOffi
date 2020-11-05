@@ -5,7 +5,7 @@ const sequelize = require('../db.config')
 
 // CHARGEMENT DU MODEL 
 const BugReport = require('../models/bug_report')(sequelize, Sequelize.DataTypes);
-const User=  require('../models/User')(sequelize, Sequelize.DataTypes);
+const User = require('../models/User')(sequelize, Sequelize.DataTypes);
 BugReport.belongsTo(User, {
   foreignKey: "user_id",
   keyType: Sequelize.INTEGER,
@@ -22,15 +22,16 @@ router.get('', function (req, res) {
 
   BugReport.findAll({
     include: [
-      { model: User,
+      {
+        model: User,
         keyType: Sequelize.INTEGER
       }
     ]
-  }) 
-  .then(data => {
-    return res.json({ data: data})
   })
-  .catch(err => res.json({ message: 'Database error', error: err}))
+    .then(data => {
+      return res.json({ data: data })
+    })
+    .catch(err => res.json({ message: 'Database error', error: err }))
 });
 
 //-------------------------------------------
@@ -39,17 +40,23 @@ router.get('', function (req, res) {
 router.get('/:id', function (req, res) {
 
   var id = req.params.id;
- // Vérifier si le champ id est présent
- if(!id){
-  return res.status(400).json({ message: 'Informations manquantes'})
-}
+  // Vérifier si le champ id est présent
+  if (!id) {
+    return res.status(400).json({ message: 'Informations manquantes' })
+  }
 
-// Vérifier si il existe dans la table user
-BugReport.findOne({ where: { id: id }, raw: true})
-.then(data => {
-  return res.json({ data: data})
-})
-.catch(err => res.json({ message: 'Database error', error: err}))
+  // Vérifier si il existe dans la table user
+  BugReport.findOne({ where: { id: id }, 
+      include: [
+    {
+      model: User,
+      keyType: Sequelize.INTEGER
+    }
+  ]})
+    .then(data => {
+      return res.status(200).json({ data: data })
+    })
+    .catch(err => res.json({ message: 'Database error', error: err }))
 });
 
 //-------------------------------------------
@@ -77,27 +84,27 @@ router.delete('/:id', function (req, res) {
 //-------------------------------------------
 router.put('/:id', function (req, res) {
   var id = req.params.id;
-  if(!id){
-      return res.status(400).json({ message: 'Informations manquantes'})
+  if (!id) {
+    return res.status(400).json({ message: 'Informations manquantes' })
   }
 
   // Vérifier si il existe dans la table user
-  BugReport.findOne({ where: { id: id }, raw: true})
-      .then(data => {
-          if(data === null){
-              return res.status(400).json({ message: 'bug report introuvable'})
-          }
-          req.body.updated_at=new Date().toISOString().slice(0, 19).replace('T', ' ');;
-          BugReport.update(req.body, {
-              where: { id: id}
-            })
-            .then(data => res.json({ message: 'bug report  updated', data: data}))
-            .catch(err => res.json({ message: 'Database error', error: err}))
+  BugReport.findOne({ where: { id: id }, raw: true })
+    .then(data => {
+      if (data === null) {
+        return res.status(400).json({ message: 'bug report introuvable' })
+      }
+      req.body.updated_at = new Date().toISOString().slice(0, 19).replace('T', ' ');;
+      BugReport.update(req.body, {
+        where: { id: id }
       })
-      .catch(err => res.json({ message: 'Database error', error: err}))
+        .then(data => res.json({ message: 'bug report  updated', data: data }))
+        .catch(err => res.json({ message: 'Database error', error: err }))
+    })
+    .catch(err => res.json({ message: 'Database error', error: err }))
 })
 //-------------------------------------------
-// Insert  [Post bugreport/register] 
+// Insert  [Post bug_report/register] 
 //-------------------------------------------
 router.post('/register', (req, res) => {
   const { description, user_id } = req.body;
@@ -108,19 +115,13 @@ router.post('/register', (req, res) => {
   }
 
   // Verification si l'utilisateur existe déjà
-  BugReport.findOne({ where: { name: name }, raw: true })
-    .then(data => {
-      if (data !== null) {
-        return res.status(400).json({ message: 'Ce compte existe déjà !' })
-      } else {
-        req.body.created_at=new Date().toISOString().slice(0, 19).replace('T', ' ');;
-        req.body.updated_at=new Date().toISOString().slice(0, 19).replace('T', ' ');;
-        BugReport.create(req.body)
-          .then(data => res.json({ message: 'bug report  created', name: name }))
-          .catch(err => res.json({ message: 'Database error', error: err }))
-      }
-    })
+
+  req.body.created_at = new Date().toISOString().slice(0, 19).replace('T', ' ');;
+  req.body.updated_at = new Date().toISOString().slice(0, 19).replace('T', ' ');;
+  BugReport.create(req.body)
+    .then(data => res.json({ message: 'bug report  created', data: data }))
     .catch(err => res.json({ message: 'Database error', error: err }))
+
 })
 
 //-------------------------------------------

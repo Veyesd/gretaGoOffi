@@ -47,17 +47,6 @@ module.exports = function(sequelize, DataTypes) {
     update_at: {
       type: DataTypes.DATE,
       allowNull: true
-    },
-    conversation_id: {
-      type: DataTypes.INTEGER(8),
-      allowNull: false,
-      references: {
-        model: {
-          tableName: 'conversation',
-        },
-        key: 'id'
-      },
-      unique: "fk_lift_conversation1"
     }
   }, {
     sequelize,

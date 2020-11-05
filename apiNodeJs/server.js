@@ -21,6 +21,9 @@ var conversation_router = require('./routers/conversation')
 var message_router = require('./routers/message')
 var sentence_router = require('./routers/sentence')
 var variable_value_router = require('./routers/variable_value')
+var user_has_place_router = require('./routers/user_has_place')
+var user_has_lift_router = require('./routers/user_has_lift')
+var training_has_place_router = require('./routers/training_has_place')
 
 
 app.use(cors()).use(morgan('tiny'))
@@ -42,6 +45,9 @@ app.use('/conversation', conversation_router)
 app.use('/message', message_router)
 app.use('/sentence', sentence_router)
 app.use('/variable_value', variable_value_router)
+app.use('/user_has_lift', user_has_lift_router)
+app.use('/user_has_place', user_has_place_router)
+app.use('/training_has_place', training_has_place_router)
 
 app.get('*', (req, res) => {
   return res.status(404).send('404')
