@@ -112,7 +112,7 @@ paths:
       tags:
         - user
       summary: user mis à jour
-      description: Il faut être connecté en tant que l'administrateur.
+      description: user mis à jour
       operationId: updateuser
       produces:
         - application/json
@@ -231,7 +231,7 @@ paths:
       tags:
         - user_has_lift
       summary: user_has_lift mis à jour
-      description: Il faut être connecté en tant que l'administrateur.
+      description: user_has_lift mis à jour.
       operationId: updateuser_has_lift
       produces:
         - application/json
@@ -605,7 +605,7 @@ paths:
         - alert
       summary: Insérer un alert
       description: 
-        Il faut être connecté en tant que l'alert. lat, ing, user_id obligatoire. id pas nécessaire 
+         Insérer un alert. lat, ing, user_id obligatoire. id pas nécessaire 
       operationId: Insertalert
       produces:
         - application/json
@@ -725,7 +725,7 @@ paths:
       tags:
         - bug_report
       summary: Insérer un bug_report
-      description:  Il faut être connecté en tant que l'administrateur. description, user_id obligatoire. id pas nécessaire 
+      description:  Insérer un bug_report. description, user_id obligatoire. id pas nécessaire 
       operationId: Insertbug_report
       produces:
         - application/json
@@ -792,7 +792,7 @@ paths:
       tags:
         - bug_report
       summary: bug_report mis à jour
-      description: Il faut être connecté en tant que l'administrateur.
+      description: bug_report mis à jour
       operationId: updatebug_report
       produces:
         - application/json
@@ -965,7 +965,7 @@ paths:
       tags:
         - lift
       summary: Insérer un lift
-      description:  Il faut être connecté en tant que l'administrateur. date_departude,lat_departure,lng_departure,lat_arrival,lng_arrival obligatoire. id pas nécessaire 
+      description:  Insérer un lift date_departude,lat_departure,lng_departure,lat_arrival,lng_arrival obligatoire. id pas nécessaire 
       operationId: Insertlift
       produces:
         - application/json
@@ -1032,7 +1032,7 @@ paths:
       tags:
         - lift
       summary: lift mis à jour
-      description: Il faut être connecté en tant que l'administrateur.
+      description: lift mis à jour
       operationId: updatelift
       produces:
         - application/json
@@ -1061,7 +1061,7 @@ paths:
       tags:
         - lift
       summary: Supprimer un lift
-      description: Il faut être connecté en tant que l'administrateur
+      description: Supprimer un lift
       operationId: deletelift
       produces:
         - application/json
@@ -1085,7 +1085,7 @@ paths:
       tags:
         - message
       summary: Insérer un message
-      description:  Il faut être connecté en tant que l'administrateur. conversation_id obligatoire. id pas nécessaire 
+      description:  Insérer un message. conversation_id obligatoire. id pas nécessaire 
       operationId: Insertmessage
       produces:
         - application/json
@@ -1152,7 +1152,7 @@ paths:
       tags:
         - message
       summary: message mis à jour
-      description: Il faut être connecté en tant que l'administrateur.
+      description: message mis à jour.
       operationId: updatemessage
       produces:
         - application/json
@@ -1181,7 +1181,7 @@ paths:
       tags:
         - message
       summary: Supprimer un message
-      description: Il faut être connecté en tant que l'administrateur
+      description: Supprimer un message
       operationId: deletemessage
       produces:
         - application/json
@@ -1205,7 +1205,7 @@ paths:
       tags:
         - place
       summary: Insérer un place
-      description:  Il faut être connecté en tant que l'administrateur. lat,lng,name obligatoire. id pas nécessaire 
+      description:  Insérer un place lat,lng,name obligatoire. id pas nécessaire 
       operationId: Insertplace
       produces:
         - application/json
@@ -1272,7 +1272,7 @@ paths:
       tags:
         - place
       summary: place mis à jour
-      description: Il faut être connecté en tant que l'administrateur.
+      description: place mis à jour.
       operationId: updateplace
       produces:
         - application/json
@@ -1301,7 +1301,7 @@ paths:
       tags:
         - place
       summary: Supprimer un place
-      description: Il faut être connecté en tant que l'administrateur
+      description: Supprimer un place
       operationId: deleteplace
       produces:
         - application/json
@@ -1325,7 +1325,7 @@ paths:
       tags:
         - sentence
       summary: Insérer un sentence
-      description:  Il faut être connecté en tant que l'administrateur. title obligatoire. id pas nécessaire 
+      description:  Insérer un sentence. title obligatoire. id pas nécessaire 
       operationId: Insertsentence
       produces:
         - application/json
@@ -1392,7 +1392,7 @@ paths:
       tags:
         - sentence
       summary: sentence mis à jour
-      description: Il faut être connecté en tant que l'administrateur.
+      description: sentence mis à jour.
       operationId: updatesentence
       produces:
         - application/json
@@ -1445,7 +1445,7 @@ paths:
       tags:
         - training
       summary: Insérer un training
-      description:  Il faut être connecté en tant que l'administrateur. name,start_date,end_date obligatoire. id pas nécessaire 
+      description: Insérer un training. name,start_date,end_date obligatoire. id pas nécessaire 
       operationId: Inserttraining
       produces:
         - application/json
@@ -1632,7 +1632,7 @@ paths:
       tags:
         - variable
       summary: variable mis à jour
-      description: Il faut être connecté en tant que l'administrateur.
+      description: variable mis à jour.
       operationId: updatevariable
       produces:
         - application/json
@@ -1661,7 +1661,7 @@ paths:
       tags:
         - variable
       summary: Supprimer un variable
-      description: Il faut être connecté en tant que l'administrateur
+      description: Supprimer un variable
       operationId: deletevariable
       produces:
         - application/json
@@ -1685,7 +1685,7 @@ paths:
       tags:
         - variable_value
       summary: Insérer un variable_value
-      description:  Il faut être connecté en tant que l'administrateur. ? obligatoire. id pas nécessaire 
+      description:  Insérer un variable_value. ? obligatoire. id pas nécessaire 
       operationId: Insertvariable_value
       produces:
         - application/json
@@ -1752,7 +1752,7 @@ paths:
       tags:
         - variable_value
       summary: variable_value mis à jour
-      description: Il faut être connecté en tant que l'administrateur.
+      description: variable_value mis à jour.
       operationId: updatevariable_value
       produces:
         - application/json
@@ -1781,7 +1781,7 @@ paths:
       tags:
         - variable_value
       summary: Supprimer un variable_value
-      description: Il faut être connecté en tant que l'administrateur
+      description: Supprimer un variable_value
       operationId: deletevariable_value
       produces:
         - application/json
@@ -1828,6 +1828,25 @@ paths:
             type: string
         '400':
           description: Email ou mot de passe incorrect
+  /admin/register:
+    post:
+      tags:
+        - admin
+      summary: Insérer un admin
+      description:  Il faut être connecté en tant que l'administrateur. name,start_date,end_date obligatoire. id pas nécessaire 
+      operationId: Insertadmin
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Insérer un admin object
+          required: true
+          schema:
+            $ref: '#/definitions/admin'
+      responses:
+        default:
+          description: admin créé
   /auth/:
     get:
       tags:
