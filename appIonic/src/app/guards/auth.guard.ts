@@ -1,12 +1,12 @@
-import { AuthService } from "./../services/auth.service";
-import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, Router } from "@angular/router";
-import { Observable } from "rxjs";
-import { take, map } from "rxjs/operators";
-import { AlertController } from "@ionic/angular";
+import { AuthService } from './../services/auth.service';
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { take, map } from 'rxjs/operators';
+import { AlertController } from '@ionic/angular';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
   constructor(
@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
       take(1),
       map((user) => {
         if (!user) {
-          this.router.navigateByUrl("login");
+          this.router.navigateByUrl('login');
           return false;
         } else {
           return true;

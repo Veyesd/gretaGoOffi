@@ -114,3 +114,14 @@
   ion-item.selected {
     --color: var(--ion-color-primary);
   }
+  ion-router-outlet{
+    top:10vh;
+  }
+  .login{
+    top:0;
+  }
+  app-header{
+    display:flex !important;
+    width: 100%;
+    height: max-content;
+  }

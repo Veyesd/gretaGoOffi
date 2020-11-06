@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,45 +12,47 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
+  public header:boolean;
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Mon compte',
-      url: '/pages/account',
-      icon: 'mail'
-    },
-    {
-      title: 'Proposer un trajet',
-      url: '/pages/trip',
-      icon: 'paper-plane'
-    },
-    {
       title: 'Trouver un trajet',
-      url: '/pages/home',
+      url: '',
       icon: 'heart'
     },
     {
+      title: 'Proposer un trajet',
+      url: '/create-trip',
+      icon: 'paper-plane'
+    },
+    {
+      title: 'Mon compte',
+      url: '/account',
+      icon: 'mail'
+    },
+    {
       title: 'Faq',
-      url: '/pages/faq',
+      url: '/faq',
       icon: 'archive'
     },
     {
       title: 'Support technique',
-      url: '/pages/setting',
-      icon: 'trash'
+      url: '/contact',
+      icon: 'at-outline'
     },
     {
       title: 'Mentions Légales',
-      url: '/pages/mentionslegales',
+      url: '/mentions-legales',
       icon: 'warning'
     }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private authService: AuthService,
+    private router: Router
   ) {
     this.initializeApp();
   }
@@ -57,14 +61,26 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.authService.authenticationState.subscribe(state => {
+        if (state) {
+          this.router.navigate(['inside']);
+        } else {
+          this.router.navigate(['login']);
+        }
+      });
     });
   }
 
   ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
+    const path = window.location.pathname;
+    console.error(path)
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+    if (path === '/login' || path === '/register' || path === '/messaging') {
+      console.log("Nous sommes dans l'écran de gestion des utilisateurs.");
+      this.header = false;
+  }
   }
 }
 

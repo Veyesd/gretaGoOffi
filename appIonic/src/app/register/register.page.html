@@ -1,0 +1,33 @@
+
+<ion-content class="ion-padding">
+  <div id="logo">
+    <img src="assets/logo.png" alt="Le logo de l'entreprise" />
+    <ion-title>Connexion</ion-title>
+  </div>
+
+<form [formGroup]="credentialsForm" (ngSubmit)="onSubmit()">
+  <ion-input
+    type="email"
+    formControlName="email"
+    placeholder="Email du Greta"
+  ></ion-input>
+  <ion-input
+    type="password"
+    formControlName="password"
+    name="password"
+    placeholder="Mot de passe"
+  ></ion-input>
+
+  
+  <button expand="full" type="submit" [disabled]="!credentialsForm.valid" id="go"><img src="assets/boutonGo.png" alt="Go"/></button>
+  <a>Mot de passe oublié</a>
+  <a>Créer un compte</a>
+  <ion-button
+    expand="full"
+    type="button"
+    (click)="register()"
+    [disabled]="!credentialsForm.valid"
+    >Register</ion-button
+  >
+</form>
+</ion-content>

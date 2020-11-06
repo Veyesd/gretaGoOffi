@@ -1,83 +1,105 @@
-import { Platform } from "@ionic/angular";
-import { Injectable } from "@angular/core";
-import { Storage } from "@ionic/storage";
-import { BehaviorSubject, Observable, from, of } from "rxjs";
-import { take, map, switchMap } from "rxjs/operators";
-import { JwtHelperService } from "@auth0/angular-jwt";
-import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
+import { BehaviorSubject, Observable, from, of } from 'rxjs';
+import { take, map, switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { Platform, AlertController } from '@ionic/angular';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Storage } from '@ionic/storage';
+import { environment } from '../../environments/environment';
+import { tap, catchError } from 'rxjs/operators';
 
 const helper = new JwtHelperService();
-const TOKEN_KEY = "jwt-token";
+const TOKEN_KEY = 'access_token';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class AuthService {
-  public user: Observable<any>;
-  private userData = new BehaviorSubject(null);
+  url = environment.url;
+  user = null;
+  authenticationState = new BehaviorSubject(false);
 
   constructor(
-    private storage: Storage,
     private http: HttpClient,
+    private helper: JwtHelperService,
+    private storage: Storage,
     private plt: Platform,
-    private router: Router
+    private alertController: AlertController
   ) {
-    this.loadStoredToken();
+    this.plt.ready().then(() => {
+      this.checkToken();
+    });
   }
 
-  loadStoredToken() {
-    let platformObs = from(this.plt.ready());
+  checkToken() {
+    this.storage.get(TOKEN_KEY).then((token) => {
+      if (token) {
+        const decoded = this.helper.decodeToken(token);
+        const isExpired = this.helper.isTokenExpired(token);
 
-    this.user = platformObs.pipe(
-      switchMap(() => {
-        return from(this.storage.get(TOKEN_KEY));
-      }),
-      map((token) => {
-        if (token) {
-          let decoded = helper.decodeToken(token);
-          this.userData.next(decoded);
-          return true;
+        if (!isExpired) {
+          this.user = decoded;
+          this.authenticationState.next(true);
         } else {
-          return null;
+          this.storage.remove(TOKEN_KEY);
         }
+      }
+    });
+  }
+
+  register(credentials) {
+    return this.http.post(`${this.url}/api/register`, credentials).pipe(
+      catchError((e) => {
+        this.showAlert(e.error.msg);
+        throw new Error(e);
       })
     );
   }
 
-  login(credentials: { email: string; pw: string }) {
-    // Normally make a POST request to your APi with your login credentials
-    if (
-      credentials.email != "nelson@email.com" ||
-      credentials.pw != "nelson"
-    ) {
-      return of(null);
-    }
-
-    return this.http.get("https://randomuser.me/api/").pipe(
-      take(1),
-      map((res) => {
-        // Extract the JWT, here we just fake it
-        return `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1Njc2NjU3MDYsImV4cCI6MTU5OTIwMTcwNiwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoiMTIzNDUiLCJmaXJzdF9uYW1lIjoiU2ltb24iLCJsYXN0X25hbWUiOiJHcmltbSIsImVtYWlsIjoic2FpbW9uQGRldmRhY3RpYy5jb20ifQ.4LZTaUxsX2oXpWN6nrSScFXeBNZVEyuPxcOkbbDVZ5U`;
+  login(credentials) {
+    return this.http.post(`${this.url}/api/login`, credentials).pipe(
+      tap((res) => {
+        this.storage.set(TOKEN_KEY, res['token']);
+        this.user = this.helper.decodeToken(res['token']);
+        this.authenticationState.next(true);
       }),
-      switchMap((token) => {
-        let decoded = helper.decodeToken(token);
-        this.userData.next(decoded);
-
-        let storageObs = from(this.storage.set(TOKEN_KEY, token));
-        return storageObs;
+      catchError((e) => {
+        this.showAlert(e.error.msg);
+        throw new Error(e);
       })
     );
-  }
-
-  getUser() {
-    return this.userData.getValue();
   }
 
   logout() {
     this.storage.remove(TOKEN_KEY).then(() => {
-      this.router.navigateByUrl("");
-      this.userData.next(null);
+      this.authenticationState.next(false);
     });
+  }
+
+  getSpecialData() {
+    return this.http.get(`${this.url}/api/special`).pipe(
+      catchError((e) => {
+        const status = e.status;
+        if (status === 401) {
+          this.showAlert('You are not authorized for this!');
+          this.logout();
+        }
+        throw new Error(e);
+      })
+    );
+  }
+
+  isAuthenticated() {
+    return this.authenticationState.value;
+  }
+
+  showAlert(msg) {
+    const alert = this.alertController.create({
+      message: msg,
+      header: 'Error',
+      buttons: ['OK'],
+    });
+    alert.then((alert) => alert.present());
   }
 }

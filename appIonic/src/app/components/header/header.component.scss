@@ -1,14 +1,20 @@
-ion-toolbar{
-    height: 15vh;
+ion-menu-button {
+    color: var(--ion-color-primary);
+  }
+  
+  ion-toolbar {
+    height: 10vh;
     --border-width: 0 0 0 !important;
     display: flex;
     justify-content: center;
     align-items: stretch;
-}
-ion-thumbnail > ion-img{
-    height: 100%;
+  }
+  ion-header ion-thumbnail > ion-img {
+    height: 105%;
     object-fit: contain;
-}
-ion-thumbnail{
-    height: 100%;
-}
+  }
+  ion-header ion-thumbnail{
+      position:absolute;
+      right: 1vh;
+      top:1vh;
+  }

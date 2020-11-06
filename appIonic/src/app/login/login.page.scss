@@ -25,7 +25,10 @@ ion-input{
     width: 100px;
     height: 100px;
     margin: auto;
-    background: #1C1C1C;
+    --background: #1C1C1C;
+    cursor: pointer;
+    position: relative;
+    z-index:10;
 }
 #go img{
     width: 100%;
@@ -42,10 +45,13 @@ ion-input{
     position: relative; 
     bottom: 0;
 }
-ion-col{
+form, ion-content{
     text-align: center;
 }
 a{
+    position:relative;
     display: block;
+    color: white;
+    z-index: 2;
 }
 
