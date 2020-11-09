@@ -1,1 +1,1 @@
-repertoire de l'application Ionic
+repertoire de l'application Ionic.
