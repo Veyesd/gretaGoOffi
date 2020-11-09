@@ -49,7 +49,7 @@ export class AuthService {
   }
 
   register(credentials) {
-    return this.http.post(`${this.url}/api/register`, credentials).pipe(
+    return this.http.post(`${this.url}/auth/register`, credentials).pipe(
       catchError((e) => {
         this.showAlert(e.error.msg);
         throw new Error(e);
@@ -58,10 +58,10 @@ export class AuthService {
   }
 
   login(credentials) {
-    return this.http.post(`${this.url}/api/login`, credentials).pipe(
+    return this.http.post(`${this.url}/auth/login`, credentials).pipe(
       tap((res) => {
-        this.storage.set(TOKEN_KEY, res['token']);
-        this.user = this.helper.decodeToken(res['token']);
+        this.storage.set(TOKEN_KEY, res['access_token']);
+        this.user = this.helper.decodeToken(res['access_token']);
         this.authenticationState.next(true);
       }),
       catchError((e) => {
@@ -78,7 +78,7 @@ export class AuthService {
   }
 
   getSpecialData() {
-    return this.http.get(`${this.url}/api/special`).pipe(
+    return this.http.get(`${this.url}/auth/`).pipe(
       catchError((e) => {
         const status = e.status;
         if (status === 401) {
@@ -97,7 +97,7 @@ export class AuthService {
   showAlert(msg) {
     const alert = this.alertController.create({
       message: msg,
-      header: 'Error',
+      header: 'Email ou mot de passe incorrect',
       buttons: ['OK'],
     });
     alert.then((alert) => alert.present());

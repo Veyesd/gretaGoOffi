@@ -22,7 +22,7 @@ export class LoginPage implements OnInit {
   }
  
   onSubmit() {
-    console.log("Soumission du formulaire")
+    console.log("Soumission");
     console.log(this.credentialsForm.value);
     this.authService.login(this.credentialsForm.value).subscribe();
   }
@@ -32,5 +32,8 @@ export class LoginPage implements OnInit {
       // Call Login to automatically login the new user
       this.authService.login(this.credentialsForm.value).subscribe();
     });
+  }
+  changeColor(e){
+    e.setAttribut("class", "focus")
   }
 }

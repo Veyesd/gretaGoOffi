@@ -1,43 +1,29 @@
 <ion-content class="ion-padding">
   <div id="logo">
     <img src="assets/logo.png" alt="Le logo de l'entreprise" />
-    <ion-title>Créer un compte</ion-title>
+    <ion-title>Connexion</ion-title>
   </div>
 
-  <form [formGroup]="credentialsForm" (ngSubmit)="onSubmit()">
-    <ion-input
-      type="email"
-      formControlName="email"
-      placeholder="Email du Greta"
-    ></ion-input>
-    <ion-input
-      type="password"
-      formControlName="password"
-      name="password"
-      placeholder="Mot de passe"
-    ></ion-input>
-    <ion-button
-    type="submit"
-    [disabled]="!credentialsForm.valid"
-    id="go"
-    (click)='onSubmit()'
-  >
-    <img src="assets/boutonGo.png" alt="Go" />
-  </ion-button>
-  </form>
-  <!-- <ion-button expand="full" type="submit" [disabled]="!credentialsForm.valid">Login</ion-button> -->
-  <!-- <button
-    expand="full"
-    type="submit"
-    [disabled]="!credentialsForm.valid"
-    id="go"
-    (click)='onSubmit()'
-  >
-    <img src="assets/boutonGo.png" alt="Go" />
-  </button> -->
-  <a>Mot de passe oublié</a>
-  <a>Créer un compte</a>
-  <div id="illustrationVoiture">
-    <img src="assets/voitureEtVague.png" alt="Une voiture" />
-  </div>
+<form [formGroup]="credentialsForm" (ngSubmit)="onSubmit()">
+  <ion-input autofocus (ionFocus)='changeColor(this)'
+    type="email" required
+    formControlName="email"
+    placeholder="Email du Greta"
+  ></ion-input>
+  <ion-input required
+    type="password"
+    formControlName="password"
+    name="password"
+    placeholder="Mot de passe"
+  ></ion-input>
+
+  
+  <button expand="full" type="submit"  id="go" ><img src="assets/boutonGo.png"  alt="Go"/></button>
+  <a [routerLink]="'/password'">Mot de passe oublié</a>
+  <a [routerLink]="'/register'">Créer un compte</a>
+
+</form>
+<div id="illustrationVoiture">
+  <img src="assets/voitureEtVague.png" alt="Une voiture" />
+</div>
 </ion-content>
