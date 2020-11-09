@@ -27,8 +27,15 @@ export class UsersService {
       catchError(this.handleError<User>(`getUser id=${id}`))
     );
   }
-  addUser(user: User): Observable<User> {
-    return this.http.post<User>(`${this.url}/register`, user, this.httpOptions).pipe(
+  getUserEmail(email: string): Observable<User> {
+    const url = `${this.url}/${email}`;
+    return this.http.get<User>(url).pipe(
+      tap(_ => this.log(`fetched user id=${email}`)),
+      catchError(this.handleError<User>(`getUser id=${email}`))
+    );
+  }
+  addUser(user): Observable<User> {
+    return this.http.post(`${this.url}/register`, user, this.httpOptions).pipe(
       tap((newUser: User) => this.log(`added User w/ id=${newUser.id}`)),
       catchError(this.handleError<User>('addUser'))
     );

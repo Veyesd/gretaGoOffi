@@ -3,7 +3,7 @@ import { take, map, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Platform, AlertController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
@@ -19,13 +19,17 @@ export class AuthService {
   url = environment.url;
   user = null;
   authenticationState = new BehaviorSubject(false);
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  }
 
   constructor(
     private http: HttpClient,
     private helper: JwtHelperService,
     private storage: Storage,
     private plt: Platform,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private router: Router
   ) {
     this.plt.ready().then(() => {
       this.checkToken();
@@ -49,25 +53,31 @@ export class AuthService {
   }
 
   register(credentials) {
-    return this.http.post(`${this.url}/auth/register`, credentials).pipe(
-      catchError((e) => {
+    this.http.post(`${this.url}/user/register`, credentials,this.httpOptions).subscribe(
+      (res) => {
+        console.log("Compte créé")
+        this.router.navigate(['/validate-message/1'])
+      },
+      (e) => {
         this.showAlert(e.error.msg);
         throw new Error(e);
-      })
+      }
     );
   }
 
   login(credentials) {
-    return this.http.post(`${this.url}/auth/login`, credentials).pipe(
-      tap((res) => {
+    this.http.post(`${this.url}/auth/login`, credentials).subscribe(
+      (res) => {
         this.storage.set(TOKEN_KEY, res['access_token']);
         this.user = this.helper.decodeToken(res['access_token']);
         this.authenticationState.next(true);
-      }),
-      catchError((e) => {
+        this.router.navigate(['']);
+
+      },
+      (e) => {
         this.showAlert(e.error.msg);
         throw new Error(e);
-      })
+      }
     );
   }
 

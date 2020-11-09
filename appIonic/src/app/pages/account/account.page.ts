@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-account',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account.page.scss'],
 })
 export class AccountPage implements OnInit {
+  @Output() public header = true;
   public form = [
     { title: 'Formation : ', val: 'JS2020', isChecked: true },
     { title: 'Anniversaire : ', val: '02 30 59 65 03', isChecked: false },

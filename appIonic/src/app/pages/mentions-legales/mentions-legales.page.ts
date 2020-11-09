@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-mentions-legales',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mentions-legales.page.scss'],
 })
 export class MentionsLegalesPage implements OnInit {
-
+  @Output() public header = true;
   constructor() { }
 
   ngOnInit() {

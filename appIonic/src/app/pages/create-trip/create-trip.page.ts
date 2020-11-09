@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-create-trip',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-trip.page.scss'],
 })
 export class CreateTripPage implements OnInit {
-
+  @Output() public header = true;
   constructor() { }
 
   ngOnInit() {

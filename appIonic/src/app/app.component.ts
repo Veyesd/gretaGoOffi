@@ -1,50 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange } from "@angular/core";
 
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { AuthService } from './services/auth.service';
-import { Router } from '@angular/router';
+import { Platform } from "@ionic/angular";
+import { SplashScreen } from "@ionic-native/splash-screen/ngx";
+import { StatusBar } from "@ionic-native/status-bar/ngx";
+import { AuthService } from "./services/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  selector: "app-root",
+  templateUrl: "app.component.html",
+  styleUrls: ["app.component.scss"],
 })
 export class AppComponent implements OnInit {
-  public header:boolean;
+  public header: boolean;
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Trouver un trajet',
-      url: '',
-      icon: 'heart'
+      title: "Trouver un trajet",
+      url: "",
+      icon: "heart",
     },
     {
-      title: 'Proposer un trajet',
-      url: '/create-trip',
-      icon: 'paper-plane'
+      title: "Proposer un trajet",
+      url: "/create-trip",
+      icon: "paper-plane",
     },
     {
-      title: 'Mon compte',
-      url: '/account',
-      icon: 'mail'
+      title: "Mon compte",
+      url: "/account",
+      icon: "mail",
     },
     {
-      title: 'Faq',
-      url: '/faq',
-      icon: 'archive'
+      title: "Faq",
+      url: "/faq",
+      icon: "archive",
     },
     {
-      title: 'Support technique',
-      url: '/contact',
-      icon: 'at-outline'
+      title: "Support technique",
+      url: "/contact",
+      icon: "at-outline",
     },
     {
-      title: 'Mentions Légales',
-      url: '/mentions-legales',
-      icon: 'warning'
-    }
+      title: "Mentions Légales",
+      url: "/mentions-legales",
+      icon: "warning",
+    },
   ];
 
   constructor(
@@ -61,11 +61,11 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.authService.authenticationState.subscribe(state => {
+      this.authService.authenticationState.subscribe((state) => {
         if (state) {
-          this.router.navigate(['inside']);
+          this.router.navigate([""]);
         } else {
-          this.router.navigate(['login']);
+          this.router.navigate(["login"]);
         }
       });
     });
@@ -73,14 +73,20 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     const path = window.location.pathname;
-    console.error(path)
+    console.error(path);
     if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+      this.selectedIndex = this.appPages.findIndex(
+        (page) => page.title.toLowerCase() === path.toLowerCase()
+      );
     }
-    if (path === '/login' || path === '/register' || path === '/messaging') {
-      console.log("Nous sommes dans l'écran de gestion des utilisateurs.");
+    if (path === "/login" || path === "/register" || path === "/messaging") {
       this.header = false;
+    }
   }
+  ngOnChanges(changes: SimpleChange){
+    
+  }
+  logout() {
+    this.authService.logout();
   }
 }
-

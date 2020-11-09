@@ -4,8 +4,8 @@
     <ion-title>Connexion</ion-title>
   </div>
 
-<form [formGroup]="credentialsForm" (ngSubmit)="onSubmit()">
-  <ion-input autofocus (ionFocus)='changeColor(this)'
+<form [formGroup]="credentialsForm" (ngSubmit)="onSubmit()" (ionFocus)='changeColor()'>
+  <ion-input autofocus 
     type="email" required
     formControlName="email"
     placeholder="Email du Greta"

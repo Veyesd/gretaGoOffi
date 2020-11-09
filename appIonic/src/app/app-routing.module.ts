@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
+
   {
     path: '',
     loadChildren: () =>
@@ -48,7 +49,7 @@ const routes: Routes = [
       import('./password/password.module').then((m) => m.PasswordPageModule),
   },
   {
-    path: 'validate-message',
+    path: 'validate-message/:id',
     loadChildren: () =>
       import('./pages/validate-message/validate-message.module').then(
         (m) => m.ValidateMessagePageModule
@@ -77,7 +78,7 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
-  },
+  }
 ];
 @NgModule({
   imports: [

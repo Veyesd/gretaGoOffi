@@ -7,7 +7,7 @@
   </ion-fab>
   <div id="logo">
     <img src="assets/logo.png" alt="Le logo de l'entreprise" />
-    <ion-title>Connexion</ion-title>
+    <ion-title>Créer un compte</ion-title>
   </div>
 
 <form [formGroup]="credentialsForm">
@@ -15,12 +15,6 @@
   type="text"
   formControlName="firstname"
   placeholder="Prénom"
-></ion-input>
-<ion-input required
-  type="password"
-  formControlName="password"
-  name="password"
-  placeholder="Mot de passe"
 ></ion-input>
   <ion-input required
     type="email"
@@ -35,9 +29,14 @@
   ></ion-input>
   <ion-item lines="none">
     <ion-label>Formation</ion-label>
-    <ion-select formControlName="training">
-      <ion-select-option *ngFor = "let training of trainings" value="training.id">{{training.name}}</ion-select-option>
+
+    <ion-select formControlName="training_id">
+      <ion-select-option *ngFor = "let training of trainings" value="{{training.id}}">{{training.name}}</ion-select-option>
     </ion-select>
+
+    <!-- <ion-select formControlName="training">
+      <ion-select-option *ngFor = "let training of trainings" value="training.id">{{training.name}}</ion-select-option>
+    </ion-select> -->
   </ion-item>
   <button expand="full" (click)="register()" id="go" ><img src="assets/boutonGo.png"  alt="Go"/></button>
 
