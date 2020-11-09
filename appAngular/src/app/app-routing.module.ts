@@ -9,6 +9,10 @@ const routes: Routes = [
       .then(m => m.AdminModule)
   },
   {
+    path: 'user', loadChildren: () => import('./user/user.module')
+      .then(m => m.UserModule)
+  },
+  {
     path: 'auth', loadChildren: () => import('./gate/gate.module')
       .then(m => m.GateModule)
   },

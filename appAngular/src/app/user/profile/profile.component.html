@@ -1,0 +1,46 @@
+<nb-card-header>
+    <img class="logo" src="../../../assets/logo.png" />
+    <label>Trouver un trajet</label>
+    <label>Proposer un trajet</label>
+    <label>Mon compte</label>
+    <label>FAQ</label>
+    <label>Support</label>
+    <label>Mentions légales</label>
+</nb-card-header>
+
+<nb-card>
+    <nb-card-body>
+        <nb-card>
+            <nb-user size="giant" name="Damien AvecUnS">
+            </nb-user>
+        </nb-card>
+
+        <nb-card>
+            <textarea name="Biographie" id="bio" cols="30" rows="10" placeholder="Biographie"></textarea>
+        </nb-card>
+
+        <nb-card id="profileDataBoard">
+            <nb-card class="profileData" size="tiny">
+                <label>Formation : </label>
+                <label>Anniversaire : </label>
+                <label>Tèl : </label>
+                <label>Adresse : </label>
+                <label>Mail : </label>
+            </nb-card>
+
+            <nb-card class="profileData" size="tiny">
+                <label>Voiture : </label>
+                <label>Permis : oui / non</label>
+            </nb-card>
+
+            <nb-card class="profileData" size="tiny">
+                <a class="text-link" routerLink="../register">Changer mon mot de passe</a>
+            </nb-card>
+
+            <nb-card class="profileData">
+                <label>Recevoir les alertes par : </label>
+            </nb-card>
+        </nb-card>
+
+    </nb-card-body>
+</nb-card>

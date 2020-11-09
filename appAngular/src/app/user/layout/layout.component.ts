@@ -6,37 +6,23 @@ import { NbMenuItem, NbThemeService } from '@nebular/theme';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
-
 export class LayoutComponent implements OnInit {
   
   items: NbMenuItem[] = [
     {
-      title: 'Dashboard',
-      link: '/admin',
-      icon: 'home-outline'
+      title: 'Se connecter',
+      link: '../auth/login',
+      icon: 'home-outline',
     },
     {
-      title: 'Utilisateurs',
-      link: '/admin/users',
+      title: 'Profil',
+      link: './profile',
       icon: 'smiling-face-outline',
     },
     {
-      title: 'Formations',
-      link: '/admin/formations',
+      title: 'trajet',
+      link: './journey',
       icon: 'smiling-face-outline',
-      expanded: true,
-    },
-    {
-      title: 'Lieux de formations',
-      link: '/admin/places',
-      icon: 'smiling-face-outline',
-      expanded: true,
-    },
-    {
-      title: 'Rapport de bug',
-      link: '/admin/bugs',
-      icon: 'smiling-face-outline',
-      expanded: true,
     },
   ];
   constructor(private themeService: NbThemeService) {
