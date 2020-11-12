@@ -8,65 +8,66 @@
       <ion-title> {{user?.firstname}} </ion-title>
     </div>
   </ion-item>
+  <a id="edit" routerLink="edit/{{user?.id}}"> Modifier mes informations</a>
 
   <ion-list>
-    <ion-item>
-      <ion-label
-        >Formation : <br />
-        <ion-select>
-          <ion-select-option
-            *ngFor="let training of trainings"
-            value="{{training?.id}}"
-            >{{training?.name}}</ion-select-option
-          >
-        </ion-select></ion-label
-      >
-      <ion-toggle
-        [(ngModel)]="form[0].isChecked"
-        name="training.name"
-      ></ion-toggle>
-      <span [ngClass]="{'visible' : form[0].isChecked}"></span>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Anniversaire: <br />{{user?.birthday}}</ion-label>
-      <ion-toggle
-        [(ngModel)]="form[1].isChecked"
-        name="{{user?.birthday}}"
-      ></ion-toggle>
-      <span [ngClass]="{'visible' : form[1].isChecked}"></span>
-    </ion-item>
-
-    <ion-item>
-      <ion-label
-        >Téléphone : <br /><input value="{{user?.phone}}"
-      /></ion-label>
-      <ion-toggle
-        [(ngModel)]="form[2].isChecked"
-        name="user?.phone"
-      ></ion-toggle>
-      <span [ngClass]="{'visible' : form[2].isChecked}"></span>
-    </ion-item>
-
-    <ion-item>
-      <ion-label
-        >Adresse : <br /><input value="{{user?.address}}"
-      /></ion-label>
-      <ion-toggle
-        [(ngModel)]="form[3].isChecked"
-        name="user?.address"
-      ></ion-toggle>
-      <span [ngClass]="{'visible' : form[3].isChecked}"></span>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Email: <br />{{user?.email}}</ion-label>
-      <ion-toggle
-        [(ngModel)]="form[4].isChecked"
-        name="user?.email"
-      ></ion-toggle>
-      <span [ngClass]="{'visible' : form[4].isChecked}"></span>
-    </ion-item>
+      <ion-item>
+        <ion-label
+          >Formation : <br />
+          <ion-select value="{{training?.name}}">
+            <ion-select-option
+              *ngFor="let training of trainings"
+              value="{{training?.name}}"
+              >{{training?.name}}</ion-select-option
+            >
+          </ion-select></ion-label
+        >
+        <ion-toggle
+          [(ngModel)]="form[0].isChecked"
+          name="training.name"
+        ></ion-toggle>
+        <span [ngClass]="{'visible' : form[0].isChecked}"></span>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Anniversaire: <br />{{user?.birthday}}</ion-label>
+        <ion-toggle
+          [(ngModel)]="form[1].isChecked"
+          name="{{user?.birthday}}"
+        ></ion-toggle>
+        <span [ngClass]="{'visible' : form[1].isChecked}"></span>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label
+          >Téléphone : <br /><input value="{{user?.phone}}"
+        /></ion-label>
+        <ion-toggle
+          [(ngModel)]="form[2].isChecked"
+          name="user?.phone"
+        ></ion-toggle>
+        <span [ngClass]="{'visible' : form[2].isChecked}"></span>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label
+          >Adresse : <br /><input value="{{user?.address}}"
+        /></ion-label>
+        <ion-toggle
+          [(ngModel)]="form[3].isChecked"
+          name="user?.address"
+        ></ion-toggle>
+        <span [ngClass]="{'visible' : form[3].isChecked}"></span>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Email: <br />{{user?.email}}</ion-label>
+        <ion-toggle
+          [(ngModel)]="form[4].isChecked"
+          name="user?.email"
+        ></ion-toggle>
+        <span [ngClass]="{'visible' : form[4].isChecked}"></span>
+      </ion-item>
 
     <ion-item>
       <ion-label>Permis:</ion-label>

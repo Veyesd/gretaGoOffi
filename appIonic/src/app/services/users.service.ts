@@ -14,18 +14,11 @@ export class UsersService {
   }
   constructor(private http: HttpClient) { }
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.url)
-      .pipe(
-        tap(_ => this.log('fetched User')),
-        catchError(this.handleError<User[]>('getUsers', []))
-      );
+    return this.http.get<User[]>(this.url);
   }
   getUser(id: number): Observable<User> {
     const url = `${this.url}/${id}`;
-    return this.http.get<User>(url).pipe(
-      tap(_ => this.log(`fetched user id=${id}`)),
-      catchError(this.handleError<User>(`getUser id=${id}`))
-    );
+    return this.http.get<User>(url);
   }
   getUserEmail(email: string): Observable<User> {
     const url = `${this.url}/${email}`;
@@ -50,10 +43,7 @@ export class UsersService {
     );
   }
   updateUser(user: User): Observable<any> {
-    return this.http.put(this.url, user, this.httpOptions).pipe(
-      tap(_ => this.log(`updated User id=${user.id}`)),
-      catchError(this.handleError<any>('updateUser'))
-    );
+    return this.http.put(this.url, user, this.httpOptions);
   }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

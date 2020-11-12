@@ -78,6 +78,11 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'account/edit/:id',
+    loadChildren: () => import('./pages/edit/edit.module').then( m => m.EditPageModule),
+   canActivate: [AuthGuard],
   }
 ];
 @NgModule({

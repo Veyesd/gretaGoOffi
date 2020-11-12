@@ -28,6 +28,7 @@ export class RegisterPage implements OnInit {
     this.getTrainings();
     this.credentialsForm = this.formBuilder.group({
       firstname: ["", [Validators.required, Validators.minLength(6)]],
+      birthday: ["", [Validators.required, Validators.minLength(6)]],
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required, Validators.minLength(6)]],
       training_id: [, [Validators.required, Validators.minLength(6)]],

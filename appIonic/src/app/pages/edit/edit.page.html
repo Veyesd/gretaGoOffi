@@ -1,0 +1,29 @@
+<app-header></app-header>
+<ion-content>
+  <form>
+    <div class="form-control-group">
+      <label class="label">adresse :</label>
+      <input name="addresse" #address placeholder="Adresse" />
+    </div>
+
+    <div class="form-control-group">
+      <label class="label">Téléphone</label>
+      <input name="phone" #phone placeholder="Téléphone" />
+    </div>
+
+    <div class="form-control-group">
+      <label class="label">Formation</label>
+      <ion-select name='training_id' #training_id placeholder="Formation">
+        <ion-select-option *ngFor = "let training of trainings" value="{{training.id}}">{{training.name}}</ion-select-option>
+      </ion-select>
+    </div>
+
+    <button
+      nbButton
+      fullWidth
+      (click)="save(address.value, phone.value, training_id.value)"
+    >
+      Valider
+    </button>
+  </form>
+</ion-content>

@@ -66,12 +66,15 @@ export class AuthService {
   }
 
   login(credentials) {
+    console.log("Je suis finalement ici")
     this.http.post(`${this.url}/auth/login`, credentials).subscribe(
       (res) => {
+        console.log("Je suis la ", res)
         this.storage.set(TOKEN_KEY, res['access_token']);
         this.user = this.helper.decodeToken(res['access_token']);
         this.authenticationState.next(true);
         localStorage.setItem('id', this.user.id)
+        
         this.router.navigate(['']);
 
       },
