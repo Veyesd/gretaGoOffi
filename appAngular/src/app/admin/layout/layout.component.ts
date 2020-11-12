@@ -40,7 +40,7 @@ export class LayoutComponent implements OnInit {
     },
   ];
   constructor(private themeService: NbThemeService) {
-    this.themeService.changeTheme('default');
+    this.themeService.changeTheme('dark');
   }
 
   ngOnInit(): void {
