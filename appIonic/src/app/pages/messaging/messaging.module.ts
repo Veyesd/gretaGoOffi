@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { MessagingPageRoutingModule } from './messaging-routing.module';
 
 import { MessagingPage } from './messaging.page';
+import { HeaderComponent } from '../../components/header/header.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { MessagingPage } from './messaging.page';
     IonicModule,
     MessagingPageRoutingModule
   ],
-  declarations: [MessagingPage]
+  declarations: [MessagingPage, HeaderComponent]
 })
 export class MessagingPageModule {}

@@ -29,7 +29,7 @@ export class AuthService {
     private storage: Storage,
     private plt: Platform,
     private alertController: AlertController,
-    private router: Router
+    private router: Router,
   ) {
     this.plt.ready().then(() => {
       this.checkToken();
@@ -71,6 +71,7 @@ export class AuthService {
         this.storage.set(TOKEN_KEY, res['access_token']);
         this.user = this.helper.decodeToken(res['access_token']);
         this.authenticationState.next(true);
+        localStorage.setItem('id', this.user.id)
         this.router.navigate(['']);
 
       },

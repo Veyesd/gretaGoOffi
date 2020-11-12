@@ -1,4 +1,12 @@
-import { Component, Input, OnInit, SimpleChange } from "@angular/core";
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChange,
+  SimpleChanges,
+} from "@angular/core";
 
 import { Platform } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
@@ -11,7 +19,7 @@ import { Router } from "@angular/router";
   templateUrl: "app.component.html",
   styleUrls: ["app.component.scss"],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnChanges {
   public header: boolean;
   public selectedIndex = 0;
   public appPages = [
@@ -52,7 +60,7 @@ export class AppComponent implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {
     this.initializeApp();
   }
@@ -83,8 +91,8 @@ export class AppComponent implements OnInit {
       this.header = false;
     }
   }
-  ngOnChanges(changes: SimpleChange){
-    
+  ngOnChanges(changes: SimpleChanges) {
+    changes.header;
   }
   logout() {
     this.authService.logout();

@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { CreateTripPageRoutingModule } from './create-trip-routing.module';
 
 import { CreateTripPage } from './create-trip.page';
+import { HeaderComponent } from '../../components/header/header.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { CreateTripPage } from './create-trip.page';
     IonicModule,
     CreateTripPageRoutingModule
   ],
-  declarations: [CreateTripPage]
+  declarations: [CreateTripPage, HeaderComponent]
 })
 export class CreateTripPageModule {}

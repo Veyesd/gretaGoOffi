@@ -10,6 +10,7 @@ export class MentionsLegalesPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

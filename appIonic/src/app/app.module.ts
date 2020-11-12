@@ -11,8 +11,9 @@ import { AppComponent } from "./app.component";
 
 import { IonicStorageModule, Storage } from "@ionic/storage";
 import { HttpClientModule } from "@angular/common/http";
-import { HeaderComponent } from "./components/header/header.component";
+
 import { JwtModule, JWT_OPTIONS } from "@auth0/angular-jwt";
+
 
 export function jwtOptionsFactory(storage) {
   return {
@@ -24,7 +25,7 @@ export function jwtOptionsFactory(storage) {
 }
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,

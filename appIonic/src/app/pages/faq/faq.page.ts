@@ -10,6 +10,8 @@ export class FaqPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
+
 
 }

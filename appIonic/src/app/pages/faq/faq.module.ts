@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { FaqPageRoutingModule } from './faq-routing.module';
 
 import { FaqPage } from './faq.page';
+import { HeaderComponent } from '../../components/header/header.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { FaqPage } from './faq.page';
     IonicModule,
     FaqPageRoutingModule
   ],
-  declarations: [FaqPage]
+  declarations: [FaqPage, HeaderComponent]
 })
 export class FaqPageModule {}

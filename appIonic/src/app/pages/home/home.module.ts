@@ -10,6 +10,7 @@ import { HomePage } from './home.page';
 import { NavComponent } from 'src/app/components/nav/nav.component';
 import { TripComponent } from '../../components/trip/trip.component';
 import { ModalComponent } from '../../components/modal/modal.component';
+import { HeaderComponent } from '../../components/header/header.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { ModalComponent } from '../../components/modal/modal.component';
     HomePageRoutingModule,
  
   ],
-  declarations: [HomePage, NavComponent, TripComponent, ModalComponent],
+  declarations: [HomePage, NavComponent, TripComponent, ModalComponent, HeaderComponent],
 })
 export class HomePageModule {}

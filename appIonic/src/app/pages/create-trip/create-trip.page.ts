@@ -7,9 +7,11 @@ import { Component, OnInit, Output } from '@angular/core';
 })
 export class CreateTripPage implements OnInit {
   @Output() public header = true;
+  
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

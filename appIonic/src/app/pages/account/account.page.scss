@@ -13,7 +13,7 @@ ion-toggle {
   --background-checked: #f19021;
 }
 ion-toggle + span:after {
-  content: "invisible";
+  content: "visible";
 }
 ion-toggle + span {
   font-size: 0.8rem;

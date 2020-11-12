@@ -8,6 +8,7 @@ import { AccountPageRoutingModule } from './account-routing.module';
 
 import { AccountPage } from './account.page';
 import { TripComponent } from 'src/app/components/trip/trip.component';
+import { HeaderComponent } from '../../components/header/header.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { TripComponent } from 'src/app/components/trip/trip.component';
     IonicModule,
     AccountPageRoutingModule
   ],
-  declarations: [AccountPage, TripComponent]
+  declarations: [AccountPage, TripComponent, HeaderComponent]
 })
 export class AccountPageModule {}

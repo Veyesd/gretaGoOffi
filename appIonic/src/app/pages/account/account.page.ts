@@ -1,29 +1,62 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnChanges, OnInit, Output, SimpleChange, SimpleChanges, ViewChild } from "@angular/core";
+import { Training } from "src/app/interfaces/training";
+import { User } from "src/app/interfaces/user";
+import { TrainingService } from "src/app/services/formations.service";
+import { UsersService } from "src/app/services/users.service";
 
 @Component({
-  selector: 'app-account',
-  templateUrl: './account.page.html',
-  styleUrls: ['./account.page.scss'],
+  selector: "app-account",
+  templateUrl: "./account.page.html",
+  styleUrls: ["./account.page.scss"],
 })
-export class AccountPage implements OnInit {
+export class AccountPage implements OnInit, OnChanges {
   @Output() public header = true;
+  user: User;
+  trainings: Training[];
+  training: Training;
+
   public form = [
-    { title: 'Formation : ', val: 'JS2020', isChecked: true },
-    { title: 'Anniversaire : ', val: '02 30 59 65 03', isChecked: false },
-    { title: 'Adresse : ', val: 'belee', isChecked: false },
-    { title: 'Email : ', val: 'belee@gejg/fr', isChecked: false },
-    { title: 'Permis : ', val: '', isChecked: false },
+    { title: "Formation : ", val: "", isChecked: true },
+    { title: "Anniversaire : ", val: "", isChecked: false },
+    { title: "Téléphone : ", val: "", isChecked: false },
+    { title: "Adresse : ", val: "", isChecked: false },
+    { title: "Email : ", val: "", isChecked: false },
+    { title: "Permis : ", val: "", isChecked: false },
   ];
   showTrip = false;
-  constructor() { }
+  constructor(
+    private userService: UsersService,
+    private trainingService: TrainingService
+  ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.showTrip = false;
-
+    const id = localStorage.getItem("id");
+    this.getUser(id)
   }
-  show(){
+  ngOnChanges(change: SimpleChanges) {
+    
+    
+  }
+  getUser(id){
+    this.userService.getUser(parseInt(id)).subscribe((t) => {
+      console.log("voici le t : ", t);
+      this.user = t;
+      this.trainingService
+        .getTrainings()
+        .subscribe((trainings) => (this.trainings = trainings["data"]));
+      this.form[1].val = this.user.birthday.toString();
+      this.form[2].val = this.user.phone;
+      this.form[3].val = this.user.address;
+      this.form[4].val = this.user.email;
+      this.trainingService.getTraining(this.user.training_id).subscribe((t) => {
+        this.training = t;
+        this.form[0].val = this.training.name;
+      });
+    });
+  }
+  show() {
     this.showTrip = !this.showTrip;
   }
-  getSelected(status: string){
-  } 
+  getSelected(status: string) {}
 }
