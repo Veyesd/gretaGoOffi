@@ -37,6 +37,42 @@ export class LayoutComponent implements OnInit {
       icon: 'smiling-face-outline',
       expanded: true,
     },
+    {
+      title: 'Admin',
+      link: '/admin/adedit',
+      icon: 'smiling-face-outline',
+      expanded: true,
+    },
+    {
+      title: 'Alert',
+      link: '/admin/alert',
+      icon: 'smiling-face-outline',
+      expanded: true,
+    },
+    {
+      title: 'Lift',
+      link: '/admin/lift',
+      icon: 'smiling-face-outline',
+      expanded: true,
+    },
+    {
+      title: 'user_has_place',
+      link: '/admin/user_has_place',
+      icon: 'smiling-face-outline',
+      expanded: true,
+    },
+    {
+      title: 'user_has_lift',
+      link: '/admin/user_has_lift',
+      icon: 'smiling-face-outline',
+      expanded: true,
+    },
+    {
+      title: 'training_has_place',
+      link: '/admin/training_has_place',
+      icon: 'smiling-face-outline',
+      expanded: true,
+    },
   ];
   constructor() { }
 

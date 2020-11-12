@@ -6,17 +6,17 @@
     <form>
       <div class="form-control-group">
         <label class="label">Prénom :</label>
-        <input [(ngModel)]="user.firstname" name="prenom" #firstname placeholder="Prénom" />
+        <input [(ngModel)]="user.firstname" name="firstname" #firstname placeholder="Prénom" />
       </div>
 
       <div class="form-control-group">
         <label class="label">Nom :</label>
-        <input [(ngModel)]="user.lastname" name="name" #lastname placeholder="nom" />
+        <input [(ngModel)]="user.lastname" name="lastname" #lastname placeholder="nom" />
       </div>
 
       <div class="form-control-group">
         <label class="label">adresse :</label>
-        <input  [(ngModel)]="user.address" name="adresse" #adress placeholder="Adresse" />
+        <input  [(ngModel)]="user.address" name="addresse" #address placeholder="Adresse" />
       </div>
 
       <div>
@@ -24,6 +24,7 @@
         <input
         [(ngModel)]="user.birthday"
           #birthday
+          name='birthday'
           placeholder="date de naissance"
           [nbDatepicker]="formpicker"
         />
@@ -31,18 +32,18 @@
       </div>
 
       <div class="form-control-group">
-        <label  [(ngModel)]="user.phone" class="label">Téléphone</label>
-        <input name="phone" #phone placeholder="phone" />
+        <label   class="label">Téléphone</label>
+        <input name="phone" #phone placeholder="phone" [(ngModel)]="user.phone" />
       </div>
 
       <div class="form-control-group">
-        <label  [(ngModel)]="user.email" class="label">Email</label>
-        <input name="email" #email placeholder="email" />
+        <label  class="label">Email</label>
+        <input name="email" #email placeholder="email"  [(ngModel)]="user.email"  />
       </div>
 
       <div class="form-control-group">
         <label class="label">Formation</label>
-        <nb-select [(ngModel)]="user.training_id" #training placeholder="Formation">
+        <nb-select [(ngModel)]="user.training_id" name='training_id' #training_id placeholder="Formation">
           <nb-option *ngFor = "let training of trainings" value="training.id">{{training.name}}</nb-option>
         </nb-select>
       </div>

@@ -36,7 +36,7 @@ router.post('/login', (req, res) => {
   }
 
 
-  Admin.findAll({ where: { email: req.body.email } })
+  Admin.findOne({ where: { email: req.body.email } })
 
     .then(result => {
 
@@ -44,7 +44,7 @@ router.post('/login', (req, res) => {
       //----------------------------------------------
       if (result.length === 0) {
 
-        User.findAll({ where: { email: req.body.email } })
+        User.findOne({ where: { email: req.body.email } })
 
           .then(result => {
 
@@ -123,7 +123,7 @@ router.get('', (req, res) => {
 // Insert  [Post /auth/register] 
 //-------------------------------------------
 router.post('/register', (req, res) => {
-  const { firstname, lastname, email, password, status } = req.body
+  const { firstname, lastname, email, password} = req.body
 
   // VERIFICATION DES DONNEES RECUES
   if (!firstname || !lastname || !email || !password) {
@@ -135,12 +135,12 @@ router.post('/register', (req, res) => {
     .then(data => {
       if (data.length === 0) {
         // TOUT VA BIEN, ajout de l'utilisateur dans la table admins
-        Admin.create(req.boby)
+        Admin.create(req.body)
           .then(data => res.json({ message: "Administrateur créé" }))
           .catch(err => res.json({ message: 'Database error', error: err }))
         return res.json({ message: 'test OK' }) //ici vide car pas de correspondance
       } else {
-        return res.json({ message: 'test OK' }) // Le username existe deja dans la table
+        return res.json({ message: 'Le username existe deja dans la table' }) // Le username existe deja dans la table
       }
     })
     .catch(err => res.json({ message: 'Database error', error: err }))

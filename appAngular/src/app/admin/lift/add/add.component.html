@@ -1,0 +1,91 @@
+<h1 id="title" class="title">Ajouter un traget</h1>
+
+<nb-card>
+  <nb-card-body>
+
+    <button nbButton hero (click)="goBack()">Retour</button>
+  </nb-card-body>
+</nb-card>
+  <nb-card size="small">
+  <nb-card-body>  
+    
+    <form>
+  
+        <div class="form-control-group">
+          <label class="label" >date_departure</label>
+          <input
+          nbInput
+          fieldSize="small"
+            name="date_departure"
+            #date_departure
+            placeholder="date_departure"
+          />
+        </div>
+        <div class="form-control-group">
+          <label class="label" >lat_departure</label>
+          <input
+          nbInput
+          fieldSize="small"
+            name="lat_departure"
+            #lat_departure
+            placeholder="lat_departure"
+          />
+        </div>
+        <div class="form-control-group">
+          <label class="label" >lng_departure</label>
+          <input
+          nbInput
+          fieldSize="small"
+            name="lng_departure"
+            #lng_departure
+            placeholder="lng_departure"
+          />
+        </div>
+        <div class="form-control-group">
+          <label class="label" >lat_arrival</label>
+          <input
+          nbInput
+          fieldSize="small"
+            name="lat_arrival"
+            #lat_arrival
+            placeholder="lat_arrival"
+          />
+        </div>
+        <div class="form-control-group">
+          <label class="label" >lng_arrival</label>
+          <input
+          nbInput
+          fieldSize="small"
+            name="lng_arrival"
+            #lng_arrival
+            placeholder="lng_arrival"
+          />
+        </div>
+        <div class="form-control-group">
+          <label class="label" >take</label>
+          <input
+          nbInput
+          fieldSize="small"
+            name="take"
+            #take
+            placeholder="take"
+          />
+        </div>
+        <div class="form-control-group">
+          <label class="label" >status</label>
+         
+          <nb-radio-group name="status" #status>
+            <nb-radio value="0">false</nb-radio>
+            <nb-radio value="1">true</nb-radio>
+
+          </nb-radio-group>
+        </div>
+    </form>
+      </nb-card-body>
+</nb-card> 
+
+      <nb-card>
+        <nb-card-body>
+      <button nbButton hero status="success" (click)="add(date_departure.value,lat_departure.value,lng_departure.value,lat_arrival.value,lng_arrival.value,take.value,status.value)">Valider</button>
+    </nb-card-body>
+  </nb-card>

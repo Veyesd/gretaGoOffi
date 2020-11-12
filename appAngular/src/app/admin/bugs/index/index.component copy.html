@@ -1,0 +1,36 @@
+<h1>Liste des bug report</h1>
+
+<nb-card class="own-scroll" size="large">
+  <nb-card-body>
+    <!-- <label class="search-label" for="search">Search:</label>
+    <input
+      nbInput
+      [nbFilterInput]="dataSource"
+      id="search"
+      class="search-input"
+    /> -->
+<button nbButton hero status="success" routerLink="./add">  Ajouter </button>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <td scope="col">User ID</td>
+          <td scope="col">Description</td>
+          <td scope="col">Create Date</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td scope="row">{{ item.user_id }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.create_at }}</td>
+
+          <td>
+            <span class="delete" title="delete" (click)="delete(item)">X</span>
+            <a class="edit" title="edit" routerLink="./edit/{{item.id}}">M</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </nb-card-body>
+</nb-card>

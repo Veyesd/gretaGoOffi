@@ -4,7 +4,7 @@ import { UsersService } from '../../../services/users.service';
 import { User } from '../../../interfaces/user';
 import { Location } from "@angular/common";
 import { Training } from '../../../interfaces/training';
-import { TrainingService } from '../../../services/formations.service';
+import { TrainingService } from '../../../services/training.service';
 
 @Component({
   selector: 'app-add',

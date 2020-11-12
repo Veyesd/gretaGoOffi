@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 import { UsersService } from '../../../services/users.service';
 import { User } from '../../../interfaces/user';
 import { Training } from '../../../interfaces/training';
-import { TrainingService } from '../../../services/formations.service';
+import { TrainingService } from '../../../services/training.service';
 
 @Component({
   selector: 'app-edit',
@@ -32,7 +32,10 @@ export class EditComponent implements OnInit {
   getUser(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.userService.getUser(id)
-    .subscribe(t => this.user = t);
+    .subscribe(t => {this.user =t;
+    console.log( t);
+    
+    });
   }
   goBack(): void{
     this.location.back();

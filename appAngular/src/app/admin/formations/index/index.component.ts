@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NbSortDirection, NbSortRequest, NbTreeGridDataSource, NbTreeGridDataSourceBuilder } from '@nebular/theme';
 import { Training } from '../../../interfaces/training';
-import { TrainingService } from '../../../services/formations.service';
+import { TrainingService } from '../../../services/training.service';
 
 
 @Component({

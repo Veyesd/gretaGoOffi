@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BugsReportComponent } from './bugs-report/bugs-report.component';
+import { IndexComponent } from './index/index.component';
+import { AddComponent } from './add/add.component';
+import { EditComponent } from './edit/edit.component';
 
 const routes: Routes = [
-  {path: '', component: BugsReportComponent},
+  {path: '', component: IndexComponent},
+  {path: 'add', component: AddComponent},
+  {path: 'edit/:id', component: EditComponent},
 ];
 
 @NgModule({

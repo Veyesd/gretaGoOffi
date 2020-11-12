@@ -1,0 +1,40 @@
+<h1>Liste des Admin</h1>
+
+<nb-card class="own-scroll" size="large">
+  <nb-card-body>
+    <!-- <label class="search-label" for="search">Search:</label>
+    <input
+      nbInput
+      [nbFilterInput]="dataSource"
+      id="search"
+      class="search-input"
+    /> -->
+<button routerLink="./add">  Ajouter </button>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <td scope="col"> firstname</td>
+          <td scope="col">lastname</td>
+          <td scope="col">email</td>
+          <td scope="col">password</td>
+          <td scope="col">status</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of datas">
+          <td scope="row">{{ data.firstname }}</td>
+          <td scope="row">{{ data.lastname }}</td>
+          <td scope="row">{{ data.email }}</td>
+          <td scope="row">{{ data.password }}</td>
+          <td>{{ data.status }}</td>
+
+          <td>
+            <span class="delete" title="delete" (click)="delete(data)">X</span>
+            <a class="edit" title="edit" routerLink="./edit/{{data.id}}">M</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </nb-card-body>
+</nb-card>

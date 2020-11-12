@@ -1,0 +1,50 @@
+<h1 id="title" class="title">Ajouter un lieu de formation</h1>
+
+<nb-card>
+  <nb-card-body>
+
+    <button nbButton hero (click)="goBack()">Retour</button>
+  </nb-card-body>
+</nb-card>
+  <nb-card size="small">
+  <nb-card-body>  
+    
+    <form>
+      <div class="form-control-group">
+        <label class="label" >driver</label>
+       
+        <nb-radio-group name="driver" #driver>
+          <nb-radio value="0">Non driver</nb-radio>
+          <nb-radio value="1">Driver</nb-radio>
+
+        </nb-radio-group>
+      </div>
+        <div class="form-control-group">
+          <label class="label" >User id</label>
+          <input
+          nbInput
+          fieldSize="small"
+            name="user_id"
+            #user_id
+            placeholder="user id"
+          />
+        </div>
+        <div class="form-control-group">
+          <label class="label" >Lift id</label>
+          <input
+          nbInput
+          fieldSize="small"
+            name="lift_id"
+            #lift_id
+            placeholder="lift id"
+          />
+        </div>
+    </form>
+      </nb-card-body>
+</nb-card> 
+
+      <nb-card>
+        <nb-card-body>
+      <button nbButton hero status="success" (click)="add(driver.value,user_id.value,lift_id.value)">Valider</button>
+    </nb-card-body>
+  </nb-card>

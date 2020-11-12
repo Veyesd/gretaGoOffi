@@ -1,0 +1,43 @@
+<h1 id="title" class="title">Ajouter un lieu de formation</h1>
+
+<nb-card>
+  <nb-card-body>
+
+    <button nbButton hero (click)="goBack()">Retour</button>
+  </nb-card-body>
+</nb-card>
+  <nb-card size="small">
+  <nb-card-body>  
+    
+    <form>
+  
+        <div class="form-control-group">
+          <label class="label" >Training id</label>
+          <input
+          nbInput
+          fieldSize="small"
+            name="training_id"
+            #training_id
+            placeholder="training id"
+          />
+        </div>
+        <div class="form-control-group">
+          <label class="label" >Place id</label>
+          <input
+          nbInput
+          fieldSize="small"
+            name="place_id"
+            #place_id
+            placeholder="place id"
+          />
+        </div>
+
+    </form>
+      </nb-card-body>
+</nb-card> 
+
+      <nb-card>
+        <nb-card-body>
+      <button nbButton hero status="success" (click)="add(training_id.value,place_id.value)">Valider</button>
+    </nb-card-body>
+  </nb-card>

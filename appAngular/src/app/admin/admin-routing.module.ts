@@ -24,6 +24,30 @@ const routes: Routes = [
         path: 'bugs', loadChildren: () => import('./bugs/bugs.module')
           .then(m => m.BugsModule)
       },
+      {
+        path: 'adedit', loadChildren:() => import('./adedit/adedit.module')
+        .then(m => m.AdeditModule)
+      },
+      {
+        path: 'alert', loadChildren:() => import('./alert/alert.module')
+        .then(m => m.AlertModule)
+      },
+      {
+        path: 'lift', loadChildren:() => import('./lift/lift.module')
+        .then(m => m.LiftModule)
+      },
+      {
+        path: 'training_has_place', loadChildren:() => import('./training_has_place/training_has_place.module')
+        .then(m => m.TrainingHasPlaceModule)
+      },
+      {
+        path: 'user_has_place', loadChildren:() => import('./user_has_place/user_has_place.module')
+        .then(m => m.UserHasPlaceModule)
+      },
+      {
+        path: 'user_has_lift', loadChildren:() => import('./user_has_lift/user_has_lift.module')
+        .then(m => m.UserHasLiftModule)
+      },
     ]
   }
 ];

@@ -115,8 +115,8 @@ router.post('/register', (req, res) => {
     return res.status(400).json({ message: 'Il manque un paramètre' })
   }
 
-  req.body.created_at=new Date().toISOString().slice(0, 19).replace('T', ' ');;
-  req.body.updated_at=new Date().toISOString().slice(0, 19).replace('T', ' ');;
+  req.body.create_at=new Date().toISOString().slice(0, 19).replace('T', ' ');;
+  req.body.update_at=new Date().toISOString().slice(0, 19).replace('T', ' ');;
 
   Lift.create(req.body)
     .then(data => res.json({ message: 'Lift created', data: data }))
