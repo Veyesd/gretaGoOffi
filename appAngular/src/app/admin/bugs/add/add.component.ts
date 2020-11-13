@@ -3,6 +3,8 @@ import { ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 import { BugsService } from '../../../services/bugs.service';
 import { Bugs } from '../../../interfaces/bugs';
+import { User } from '../../../interfaces/user';
+import { UsersService } from '../../../services/users.service';
 
 @Component({
   selector: 'app-add',
@@ -10,15 +12,25 @@ import { Bugs } from '../../../interfaces/bugs';
   styleUrls: ['./add.component.scss']
 })
 export class AddComponent implements OnInit {
-
+  users: User[];
   constructor(
     private route: ActivatedRoute,
+    private userService: UsersService,
     private BugsService: BugsService,
     private location: Location
   ) { }
 
   ngOnInit(): void {
+    this.getUsers();
   }
+
+  getUsers(): void {
+    this.userService.getUsers()
+      .subscribe(t => {
+        this.users = t['data'];
+      });
+  }
+
   goBack(): void {
     this.location.back();
   }

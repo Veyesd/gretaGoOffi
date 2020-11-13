@@ -16,6 +16,8 @@
           <td scope="col">driver</td>
           <td scope="col">user ID</td>
           <td scope="col">lift ID</td>
+ 
+          <td scope="col">Éditer</td>
         </tr>
       </thead>
       <tbody>
@@ -23,9 +25,9 @@
           <td scope="row">{{ data.driver }}</td>
           <td>{{ data.user_id }}</td>
           <td>{{ data.lift_id }}</td>
-          <td>
-            <span class="delete" title="delete" (click)="delete(data)">X</span>
-            <a class="edit" title="edit" routerLink="./edit/{{data.id}}">M</a>
+ 
+            <td>
+            <a class="edit" title="edit" routerLink="./edit/{{data.id}}"> <button nbButton status="info">Éditer</button></a>
           </td>
         </tr>
       </tbody>

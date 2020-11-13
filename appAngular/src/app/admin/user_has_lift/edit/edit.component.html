@@ -34,8 +34,8 @@
         <label class="label" >driver</label>
        
         <nb-radio-group name="driver" #driver [(value)]="UserHasLift.driver">
-          <nb-radio [value]="0" >Non driver</nb-radio>
-          <nb-radio [value]="1">Driver</nb-radio>
+          <nb-radio [value]=0 >Non driver</nb-radio>
+          <nb-radio [value]=1>Driver</nb-radio>
 
         </nb-radio-group>
       </div>
@@ -47,7 +47,7 @@
 
       <nb-card>
         <nb-card-body>
-          <button nbButton hero status="success" fullWidth (click)="save()">
+          <button nbButton hero status="success"  (click)="save()">
             Valider
           </button>
     </nb-card-body>

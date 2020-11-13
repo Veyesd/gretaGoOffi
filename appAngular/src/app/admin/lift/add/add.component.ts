@@ -10,7 +10,7 @@ import { Lift } from '../../../interfaces/lift';
   styleUrls: ['./add.component.scss']
 })
 export class AddComponent implements OnInit {
-
+  initdata={status:true};
   constructor(
     private route: ActivatedRoute,
     private LiftService: LiftService,
@@ -18,6 +18,9 @@ export class AddComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  }
+  onEnabledToggleChange(){
+    this.initdata.status=!this.initdata.status;
   }
   goBack(): void {
     this.location.back();
@@ -31,7 +34,7 @@ export class AddComponent implements OnInit {
     take: number,
     status: boolean): void {
 
-
+      status=this.initdata.status;
 
     if ( !date_departure&&!lat_departure&&!lng_departure&&!lat_arrival&&!lng_arrival&&!status){ return; }
     this.LiftService.addLift({ date_departure,lat_departure,lng_departure,lat_arrival,lng_arrival,take,status} as Lift)

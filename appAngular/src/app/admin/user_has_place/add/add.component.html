@@ -11,26 +11,18 @@
     
     <form>
   
-        <div class="form-control-group">
-          <label class="label" >User id</label>
-          <input
-          nbInput
-          fieldSize="small"
-            name="user_id"
-            #user_id
-            placeholder="user id"
-          />
-        </div>
-        <div class="form-control-group">
-          <label class="label" >Place id</label>
-          <input
-          nbInput
-          fieldSize="small"
-            name="place_id"
-            #place_id
-            placeholder="place id"
-          />
-        </div>
+      <div class="form-control-group">
+        <label class="label">User</label>
+        <select #user_id placeholder="User" name='user_id'>
+          <option *ngFor="let user of users" value="{{user.id}}">{{user.firstname}} {{user.lastname}}</option>
+        </select>
+      </div>
+      <div class="form-control-group">
+        <label class="label">Place</label>
+        <select #place_id placeholder="Place" name='place_id'>
+          <option *ngFor="let place of places" value="{{place.id}}">{{place.name}} {{place.address}}</option>
+        </select>
+      </div>
      
     </form>
       </nb-card-body>

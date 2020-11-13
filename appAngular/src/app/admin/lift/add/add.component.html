@@ -74,7 +74,7 @@
         </div>
         <div class="form-control-group">
           <label class="label">status</label>
-        <nb-toggle [checked]="true"  status="success" name="status" #status></nb-toggle>
+          <nb-toggle [(ngModel)]="initdata.status" status="success" name="status" #status></nb-toggle>
         </div>
     </form>
       </nb-card-body>

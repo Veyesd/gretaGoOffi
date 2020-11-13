@@ -12,39 +12,42 @@ import { UsersService } from '../../../services/users.service';
 })
 export class AddComponent implements OnInit {
   users: User[];
+  initdata={status:true};
   constructor(
     private route: ActivatedRoute,
     private userService: UsersService,
-    private AlertService: AlertService,
+    private alertService: AlertService,
     private location: Location
   ) { }
 
   ngOnInit(): void {
-    this.getUser();
+    this.getUsers();
+  }
+  onEnabledToggleChange(){
+    this.initdata.status=!this.initdata.status;
   }
   goBack(): void {
     this.location.back();
   }
 
-  getUser(): void {
-
+  getUsers(): void {
     this.userService.getUsers()
       .subscribe(t => {
-        // t['data'].birthday = format( new Date(2014, 1, 11), 'yyyy-MM-dd' );
         this.users = t['data'];
       });
   }
 
-  add(lng: number,
+  add(status: boolean,
+    lng: number,
     lat: number,
-    status: boolean,
-    user_id: number): void {
+    user_id: number
+    
+    ): void {
 
+      status=this.initdata.status;
 
-
-      console.log(lng,lat,user_id,status);
     if (!lng || !lat ||  !user_id) { return; }
-    this.AlertService.addAlert({
+    this.alertService.addAlert({
       lng,
       lat,
       status,

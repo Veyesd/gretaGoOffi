@@ -11,16 +11,12 @@
     
     <form>
   
-        <div class="form-control-group">
-          <label class="label" >User id</label>
-          <input
-          nbInput
-          fieldSize="small"
-            name="user_id"
-            #user_id
-            placeholder="user id"
-          />
-        </div>
+      <div class="form-control-group">
+        <label class="label">User</label>
+        <select #user_id placeholder="User" name='user_id'>
+          <option *ngFor="let user of users" value="{{user.id}}">{{user.firstname}} {{user.lastname}}</option>
+        </select>
+      </div>
         <div class="form-control-group">
           <label class="label" >Description:</label>
         <textarea 

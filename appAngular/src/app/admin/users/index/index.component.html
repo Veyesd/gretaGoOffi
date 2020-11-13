@@ -19,6 +19,8 @@
           <td scope="col">Téléphone</td>
           <td scope="col">Email</td>
           <td scope="col">Adresse</td>
+          <td scope="col">Supprimer</td>
+          <td scope="col">Éditer</td>
         </tr>
       </thead>
 
@@ -29,11 +31,13 @@
           <td>{{ user.birthday }}</td>
           <td>{{ user.phone }}</td>
           <td>{{ user.email }}</td>
-          <td>{{ user.adress }}</td>
+          <td>{{ user.address }}</td>
 
           <td>
-            <span class="delete" title="delete" (click)="delete(user)">x</span>
-            <a class="edit" title="edit" routerLink="./edit/{{user.id}}">M</a>
+            <span class="delete" title="delete" (click)="delete(user)">   <button nbButton status="danger">Supprimer</button></span>
+          </td>
+            <td>
+            <a class="edit" title="edit" routerLink="./edit/{{user.id}}"> <button nbButton status="info">Éditer</button></a>
           </td>
         </tr>
       </tbody>

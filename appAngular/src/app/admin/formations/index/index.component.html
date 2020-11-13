@@ -16,7 +16,8 @@
           <td scope="col">Date de début</td>
           <td scope="col">Date de fin</td>
           <td scope="col">status</td>
-          <td scope="col"></td>
+          <td scope="col">Supprimer</td>
+          <td scope="col">Éditer</td>
         </tr>
       </thead>
       <tbody>
@@ -27,8 +28,10 @@
           <td>{{ training.status }}</td>
 
           <td>
-            <span class="delete" title="delete training" (click)="delete(training)">x</span>
-            <a class="edit" title="edit training" routerLink="./edit/{{training.id}}">M</a>
+            <span class="delete" title="delete training" (click)="delete(training)"><button nbButton status="danger">Supprimer</button></span>
+          </td>
+            <td>
+            <a class="edit" title="edit training" routerLink="./edit/{{training.id}}"><button nbButton status="info">Éditer</button></a>
           </td>
         </tr>
       </tbody>

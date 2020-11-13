@@ -14,6 +14,8 @@
         <tr>
           <td scope="col">Nom</td>
           <td scope="col">Adresse</td>
+          <td scope="col">Supprimer</td>
+          <td scope="col">Éditer</td>
         </tr>
       </thead>
       <tbody>
@@ -22,8 +24,10 @@
           <td>{{ place.address }}</td>
 
           <td>
-            <span class="delete" title="delete" (click)="delete(place)">X</span>
-            <a class="edit" title="edit" routerLink="./edit/{{place.id}}">M</a>
+            <span class="delete" title="delete" (click)="delete(place)"> <button nbButton status="danger">Supprimer</button></span>
+            </td>
+            <td>
+            <a class="edit" title="edit" routerLink="./edit/{{place.id}}"><button nbButton status="info">Éditer</button></a>
           </td>
         </tr>
       </tbody>

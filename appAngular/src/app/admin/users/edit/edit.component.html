@@ -23,7 +23,10 @@
           <label class="label">adresse :</label>
           <input [(ngModel)]="user.address" name="address" #address placeholder="Adresse" />
         </div>
-
+        <div class="form-control-group">
+          <label class="label">password :</label>
+          <input [(ngModel)]="user.password" name="password" #password placeholder="Password" />
+        </div>
         <div>
           <label class="label" for="birthday">Date de naissance</label>
           <input [(ngModel)]="user.birthday" #birthday name='birthday' placeholder="date de naissance"
@@ -43,15 +46,16 @@
 
         <div class="form-control-group">
           <label class="label">Formation</label>
-          <nb-select [(ngModel)]="user.training_id" name='training_id' #training_id placeholder="Formation">
-            <nb-option *ngFor="let training of trainings" value="training.id">{{training.name}}</nb-option>
-          </nb-select>
+          <select [(ngModel)]="user.training_id" name='training_id' #training_id placeholder="Formation">
+            <option *ngFor="let training of trainings" value="training.id">{{training.name}}</option>
+          </select>
         </div>
       </form>
     </nb-card-body>
   </nb-card>
   <nb-card>
     <nb-card-body>
+      
       <button nbButton hero status="success" (click)="save()">
         Valider
       </button>

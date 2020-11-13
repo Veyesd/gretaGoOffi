@@ -1,46 +1,38 @@
 <h1 id="title" class="title">Ajouter un lieu de formation (place)</h1>
 
-<nb-card size="large">
+<nb-card>
   <nb-card-body>
-    <button (click)="goBack()">Retour</button>
+    <button nbButton hero (click)="goBack()">Retour</button>
+  </nb-card-body>
+</nb-card>
+    <nb-card size="medium">
+      <nb-card-body>
     <form>
       <div class="form-control-group">
-        <label class="label" >Nom du lieu :</label>
-        <input
-          name="name"
-          #name
-          placeholder="name"
-        />
+        <label class="label">Nom du lieu :</label>
+        <input name="name" #name placeholder="name" />
       </div>
       <div class="form-control-group">
-        <label class="label" >Latitude</label>
-        <input
-          name="lat"
-          #lat
-          placeholder="adresse"
-        />
+        <label class="label">Latitude</label>
+        <input name="lat" #lat placeholder="Latitude" />
 
       </div>
       <div class="form-control-group">
-        <label class="label" >Longitude</label>
-        <input
-          name="lng"
-          #lng
-          placeholder="adresse"
-        />
+        <label class="label">Longitude</label>
+        <input name="lng" #lng placeholder="Longitude" />
 
       </div>
       <div class="form-control-group">
-        <label class="label" >Adresse du lieu :</label>
-        <input
-          name="adresse"
-          #adresse
-          placeholder="adresse"
-        />
+        <label class="label">Adresse du lieu :</label>
+        <input name="adresse" #adresse placeholder="adresse" />
 
       </div>
-
-      <button nbButton fullWidth (click)="add(name.value, adresse.value, lat.value, lng.value)">Valider</button>
     </form>
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-body>
+    <button nbButton hero status="success"
+      (click)="add(name.value, adresse.value, lat.value, lng.value)">Valider</button>
   </nb-card-body>
 </nb-card>

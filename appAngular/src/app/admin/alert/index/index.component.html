@@ -18,6 +18,9 @@
           <td scope="col">status</td>
           <td scope="col">user_id</td>
           <td scope="col">create date</td>
+
+          <td scope="col">Supprimer</td>
+          <td scope="col">Éditer</td>
         </tr>
       </thead>
       <tbody>
@@ -29,8 +32,10 @@
           <td>{{ data.created_at }}</td>
 
           <td>
-            <span class="delete" title="delete" (click)="delete(data)">X</span>
-            <a class="edit" title="edit" routerLink="./edit/{{data.id}}">M</a>
+            <span class="delete" title="delete" (click)="delete(data)">  <button nbButton status="danger">Supprimer</button></span>
+          </td>
+            <td>
+            <a class="edit" title="edit" routerLink="./edit/{{data.id}}"><button nbButton status="info">Éditer</button></a>
           </td>
         </tr>
       </tbody>

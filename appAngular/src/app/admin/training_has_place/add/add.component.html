@@ -11,25 +11,17 @@
     
     <form>
   
+      <div class="form-control-group">
+        <label class="label">Trainig</label>
+        <select #training_id placeholder="Training" name='training_id'>
+          <option *ngFor="let training of trainings" value="{{training.id}}">{{training.id}} {{training.name}}</option>
+        </select>
+      </div>
         <div class="form-control-group">
-          <label class="label" >Training id</label>
-          <input
-          nbInput
-          fieldSize="small"
-            name="training_id"
-            #training_id
-            placeholder="training id"
-          />
-        </div>
-        <div class="form-control-group">
-          <label class="label" >Place id</label>
-          <input
-          nbInput
-          fieldSize="small"
-            name="place_id"
-            #place_id
-            placeholder="place id"
-          />
+          <label class="label">Place</label>
+          <select #place_id placeholder="Place" name='place_id'>
+            <option *ngFor="let place of places" value="{{place.id}}">{{place.name}} {{place.address}}</option>
+          </select>
         </div>
 
     </form>

@@ -30,7 +30,6 @@ export class EditComponent implements OnInit {
   getTrainings(): void{
     this.trainingService.getTrainings()
     .subscribe(trainings => {this.trainings = trainings['data'];
-    console.log(this.trainings);
   })
 
   }
@@ -38,10 +37,7 @@ export class EditComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.userService.getUser(id)
     .subscribe(t => {
-      // t['data'].birthday = format( new Date(2014, 1, 11), 'yyyy-MM-dd' );
       this.user =t['data'];
-    console.log(this.user)
-  
   });
   }
   goBack(): void{

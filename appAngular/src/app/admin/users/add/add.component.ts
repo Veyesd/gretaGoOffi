@@ -31,15 +31,14 @@ export class AddComponent implements OnInit {
   goBack(): void {
     this.loc.back();
   }
-  add(firstname: string, lastname: string, address: string, birthday: Date, phone: string, email: string, training_id: number): void {
+  add(firstname: string, lastname: string, address: string, password:string, birthday: Date, phone: string, email: string, training_id: number): void {
     firstname = firstname.trim();
     lastname = lastname.trim();
     address = address.trim();
     phone = phone.trim();
     email = email.trim();
-    const password: string = this.generatePassword()
-
-    if(!firstname && !lastname){
+    // const password: string = this.generatePassword()
+    if(!firstname || !lastname || !password){
       alert("Des champs obligatoire ne sont pas remplis")
       return; }
     this.userService.addUser({ firstname, lastname, address, password, birthday, phone, email,training_id} as User)

@@ -47,7 +47,7 @@
 
       <div class="form-control-group">
         <label class="label">status</label>
-      <nb-toggle [(ngModel)]="training.status" status="success" name="status" #status></nb-toggle>
+      <nb-toggle [(ngModel)]="training.status" status="success" name="status" #status (checkedChange)="onEnabledToggleChange()"></nb-toggle>
       </div>
     </form>
     </nb-card-body>

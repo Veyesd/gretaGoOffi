@@ -33,10 +33,6 @@
         </div>
         <div class="form-control-group">
           <label class="label" >Email</label>
-      
-
-          <nb-form-field>
-            <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
             <input
             nbInput
             fieldSize="small"
@@ -44,7 +40,6 @@
               #email
               placeholder="email"
             />
-          </nb-form-field>
         </div>
         <div class="form-control-group">
           <label class="label" >Password</label>
@@ -59,7 +54,7 @@
   
         <div class="form-control-group">
           <label class="label">Status</label>
-        <nb-toggle [checked]="true" status="success" name="status" #status></nb-toggle>
+          <nb-toggle [(ngModel)]="initdata.status" status="success" name="status" #status></nb-toggle>
         </div>
        
 

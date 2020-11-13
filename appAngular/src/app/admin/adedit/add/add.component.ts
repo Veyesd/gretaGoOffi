@@ -10,7 +10,7 @@ import { Admin } from '../../../interfaces/admin';
   styleUrls: ['./add.component.scss']
 })
 export class AddComponent implements OnInit {
-
+  initdata={status:true};
   constructor(
     private route: ActivatedRoute,
     private AdminService: AdminService,
@@ -18,6 +18,9 @@ export class AddComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  }
+  onEnabledToggleChange(){
+    this.initdata.status=!this.initdata.status;
   }
   goBack(): void {
     this.location.back();
@@ -31,7 +34,7 @@ export class AddComponent implements OnInit {
       lastname = lastname.trim();
       email = email.trim();
       password = password.trim();
-
+      status=this.initdata.status;
 
     if (!firstname || !password || !email){ return; }
     this.AdminService.addAdmin({ firstname,lastname,email,password,status } as Admin)
