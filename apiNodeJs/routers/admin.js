@@ -36,28 +36,29 @@ router.post('/login', (req, res) => {
   }
 
 
-  Admin.findAll({ where: { email: req.body.email } })
+  Admin.findOne({ where: { email: req.body.email } })
 
     .then(result => {
 
       // Verification si l'utilisateur existe
       //----------------------------------------------
-      if (result==null) {
+      if (result == null) {
 
-        User.findAll({ where: { email: req.body.email } })
+        User.findOne({ where: { email: req.body.email } })
 
           .then(result => {
 
             // Verification si l'utilisateur existe
 
-            if (result.length === 0) {
+            if (result == null) {
 
               return res.status(401).json({ message: 'Compte inexistant' })
             }
 
             //MISE EN FORME DU RESULT
-            var user = JSON.parse(JSON.stringify(result))[0]
+            var user = JSON.parse(JSON.stringify(result))
 
+         
 
             //VERIFICATION SI LE MOT DE PASSE EST BON
             if (!bcrypt.compareSync(req.body.password, user.password)) {
@@ -83,9 +84,7 @@ router.post('/login', (req, res) => {
       //----------------------------------------------
 
       //MISE EN FORME DU RESULT
-      var admin = JSON.parse(JSON.stringify(result))[0]
-
-
+      var admin = JSON.parse(JSON.stringify(result))
       //VERIFICATION SI LE MOT DE PASSE EST BON
       if (!bcrypt.compareSync(req.body.password, admin.password)) {
         // res.send("Mot de passe incorrect")
@@ -123,7 +122,7 @@ router.get('', (req, res) => {
 // Insert  [Post /auth/register] 
 //-------------------------------------------
 router.post('/register', (req, res) => {
-  const { firstname, lastname, email, password} = req.body
+  const { firstname, lastname, email, password } = req.body
 
   // VERIFICATION DES DONNEES RECUES
   if (!firstname || !lastname || !email || !password) {
@@ -131,10 +130,13 @@ router.post('/register', (req, res) => {
   }
 
   // VERIFICATION SI L'UTILISATEUR EXISTE DEJA
-  Admin.findAll({ where: { firstname: firstname } })
+  Admin.findOne({ where: { firstname: firstname } })
     .then(data => {
-      if (data.length === 0) {
+      if (data === null) {
         // TOUT VA BIEN, ajout de l'utilisateur dans la table admins
+        if(req.body.password!==null){
+        req.body.password = bcrypt.hashSync(req.body.password, parseInt(process.env.BCRYPT_SALT_ROUND))
+        }
         Admin.create(req.body)
           .then(data => res.json({ message: "Administrateur créé" }))
           .catch(err => res.json({ message: 'Database error', error: err }))
@@ -154,17 +156,17 @@ router.post('/register', (req, res) => {
 router.get('/:id', function (req, res) {
 
   var id = req.params.id;
- // Vérifier si le champ id est présent
- if(!id){
-  return res.status(400).json({ message: 'Informations manquantes'})
-}
+  // Vérifier si le champ id est présent
+  if (!id) {
+    return res.status(400).json({ message: 'Informations manquantes' })
+  }
 
-// Vérifier si il existe dans la table user
-Admin.findOne({ where: { id: id }})
-.then(data => {
-  return res.status(200).json({ data: data})
-})
-.catch(err => res.json({ message: 'Database error', error: err}))
+  // Vérifier si il existe dans la table user
+  Admin.findOne({ where: { id: id } })
+    .then(data => {
+      return res.status(200).json({ data: data })
+    })
+    .catch(err => res.json({ message: 'Database error', error: err }))
 });
 //-------------------------------------------
 // Update [PUT /auth/:id]
@@ -177,20 +179,30 @@ router.put('/:id', (req, res) => {
   }
 
   // Vérifier si il existe dans la table admin
-  Admin.findAll({ where: { id: req.params.id } })
+  Admin.findOne({ where: { id: req.params.id } })
     .then(data => {
-      if (data.length == 0) {
+      if (data === null) {
         return res.status(404).json({ message: 'admin introuvable' }) // Le username existe deja dans la table
       }
-
+      // ---------------------------------
+      let admin = JSON.parse(JSON.stringify(data));
+      if (req.body.password !== null) {
+        // if (!bcrypt.compareSync(req.body.password, admin.password)) {
+          //if password changed 
+          req.body.password = bcrypt.hashSync(req.body.password, parseInt(process.env.BCRYPT_SALT_ROUND))
+        // }
+      }else{
+        req.body.password=admin.password
+      }
+      // -------------------------------------v
       // TOUT VA BIEN, modification de l'utilisateur
       Admin.update(req.body, {
         where: { id: req.params.id }
       })
         .then(data => res.status(200).json({ message: "mise à jour de l'administrateur" }))
-        .catch(err => res.json({ message: 'Database error', error: err }))
+        .catch(err => res.status(400).json({ message: 'Database error', error: err }))
     })
-    .catch(err => res.json({ message: 'Database error', error: err }))
+    .catch(err => res.status(400).json({ message: 'Database error', error: err }))
 
 })
 
@@ -215,7 +227,7 @@ router.delete('/:id', (req, res) => {
           return res.status(200).json({ data: 'administrateur supprimé' })
         })
         .catch(err => res.json({ message: 'Database error', error: err }))
-      
+
     })
     .catch(err => res.json({ message: 'Database error', error: err }))
 

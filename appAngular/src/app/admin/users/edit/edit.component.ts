@@ -6,8 +6,8 @@ import { User } from '../../../interfaces/user';
 import { Training } from '../../../interfaces/training';
 import { TrainingService } from '../../../services/training.service';
 import { FormControl } from '@angular/forms';
-// import { format, compareAsc } from 'date-fns'
 
+// import { format, compareAsc } from 'date-fns'
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -17,6 +17,7 @@ export class EditComponent implements OnInit {
   user: User;
   trainings: Training[];
 
+  
   constructor(
     private route: ActivatedRoute,
     private userService: UsersService,
@@ -38,13 +39,15 @@ export class EditComponent implements OnInit {
     this.userService.getUser(id)
     .subscribe(t => {
       this.user =t['data'];
+      this.user.password=null;
+
   });
   }
   goBack(): void{
     this.location.back();
   }
   save(): void{
-    console.log(this.user);
+
     this.userService.updateUser(this.user)
     .subscribe(() => this.goBack());
   }

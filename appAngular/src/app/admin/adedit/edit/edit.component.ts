@@ -25,7 +25,9 @@ export class EditComponent implements OnInit {
   getAdmin(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.AdminService.getAdmin(id)
-    .subscribe(t => this.Admin = t['data']);
+    .subscribe(t => {this.Admin = t['data'];
+    this.Admin.password=null;
+  });
   }
   goBack(): void{
     this.location.back();

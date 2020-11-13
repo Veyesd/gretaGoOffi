@@ -27,7 +27,7 @@
 
       </div>
       <div class="form-control-group">
-        <label class="label">password</label>
+        <label class="label">password : remplir uniquement si vous voulez modifier</label>
         <input nbInput [(ngModel)]="Admin.password" fieldSize="small" name="password" #password
           placeholder="password" />
       </div>
@@ -44,7 +44,7 @@
 
 <nb-card>
   <nb-card-body>
-    <button nbButton hero status="success" fullWidth (click)="save()">
+    <button nbButton hero status="success" (click)="save()">
       Valider
     </button>
 

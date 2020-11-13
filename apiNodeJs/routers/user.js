@@ -122,9 +122,6 @@ router.delete('/:id', function (req, res) {
 //-------------------------------------------
 // Update [PUT /user/:id]
 //-------------------------------------------
-//-------------------------------------------
-// Update [PUT /user/:id]
-//-------------------------------------------
 router.put('/:id', function (req, res) {
   var id = req.params.id;
 // Vérifier si il existe dans la table user
@@ -135,28 +132,27 @@ User.findOne({ where: { id: id }, raw: true})
     }
     req.body.updated_at=new Date().toISOString().slice(0, 19).replace('T', ' ');;
     // ---------------------------------
-     let user = JSON.parse(JSON.stringify(data))[0];
-    //  if (!bcrypt.compareSync(req.body.password, user.password)) {
-    // console.log("req.body.password", req.body.password)
-      
-    //        //if password changed 
-    //      bcrypt.hash(req.body.password, parseInt(process.env.BCRYPT_SALT_ROUND))
-    // .then(hash => {
-    // }
-
-        
-          // }
-  
+    let user = JSON.parse(JSON.stringify(data));
+    if(req.body.password!==null){
+      // if (!bcrypt.compareSync(req.body.password, user.password)) {
+        //if password changed 
+        console.log("------!NULL req.body.password", req.body.password)
+           req.body.password=bcrypt.hashSync(req.body.password, parseInt(process.env.BCRYPT_SALT_ROUND))
+      // }
+    }else{
+      req.body.password=user.password
+      console.log(" -----------req.body.password=user.password",  req.body.password,user.password)
+    }
        // -------------------------------------v
   
       
       User.update(req.body, {
         where: { id: id}
       })
-      .then(user => res.json({ message: '"mise à jour de user', data: user}))
-      .catch(err => res.json({ message: 'Database error update', error: err}))
+      .then(user => res.status(200).json({ message: '"mise à jour de user', data: user}))
+      .catch(err => res.status(400).json({ message: 'Database error update', error: err}))
 })
-.catch(err => res.json({ message: 'Database error', error: err}))
+.catch(err => res.status(400).json({ message: 'Database error', error: err}))
 })
 //-------------------------------------------
 // Insert  [Post /user/register] 
