@@ -29,6 +29,7 @@ router.use(function timelog(req, res, next) {
 //-------------------------------------------
 // ROUTAGE DU LOGIN
 router.post('/login', (req, res) => {
+  console.log(req.body)
 
   // if(!req.body.username || !req.body.password){
   if (!req.body.email || !req.body.password) {
@@ -39,15 +40,14 @@ router.post('/login', (req, res) => {
   Admin.findAll({ where: { email: req.body.email } })
 
     .then(result => {
-
       // Verification si l'utilisateur existe
       //----------------------------------------------
       if (result.length === 0) {
 
         User.findAll({ where: { email: req.body.email } })
-
+         
         .then(result => {
-    
+          
           // Verification si l'utilisateur existe
   
           if (result.length === 0) {
@@ -58,21 +58,20 @@ router.post('/login', (req, res) => {
           //MISE EN FORME DU RESULT
           var user = JSON.parse(JSON.stringify(result))[0]
     
-    
           //VERIFICATION SI LE MOT DE PASSE EST BON
           if (!bcrypt.compareSync(req.body.password, user.password)) {
             // res.send("Mot de passe incorrect")
             return res.status(400).json({ message: "Mot de passe incorrect" })
           }
-    
           // Création du token
           const token = jwt.sign({
             id: user.id,
             email: user.email,
+            role: 'user'
     
-          }, process.env.JWR_SECRET, { expiresIn: process.env.JWT_DIRING })
+          }, process.env.JWR_SECRET, { expiresIn: process.env.JWT_DURING })
     
-    
+          console.log('on est là' , user.id)
           return res.json({ access_token: token,login_user:'user' })
         })
     
@@ -96,8 +95,9 @@ router.post('/login', (req, res) => {
       const token = jwt.sign({
         id: admin.id,
         email: admin.email,
+        role: 'admin'
 
-      }, process.env.JWR_SECRET, { expiresIn: process.env.JWT_DIRING })
+      }, process.env.JWR_SECRET, { expiresIn: process.env.JWT_DURING })
 
 
       return res.json({ access_token: token,login_user:'admin' })

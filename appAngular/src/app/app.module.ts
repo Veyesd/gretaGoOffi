@@ -10,6 +10,7 @@ import { ErrorComponent } from './partials/error/error.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken } from '@nebular/auth';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,7 @@ import { NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken } from '@nebular/a
                 endpoint: '/auth/login',
                 method : 'post',
                 redirect: {
-                  success: '/admin',
+                  success: '/dispatch',
                   failure: null, // stay on the same page
                 },
               },

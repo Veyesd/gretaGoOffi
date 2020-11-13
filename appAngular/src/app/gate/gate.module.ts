@@ -6,10 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { NbAlertModule, NbButtonModule, NbCheckboxModule, NbInputModule, NbThemeModule } from '@nebular/theme';
 import { NbAuthModule } from '@nebular/auth';
 import { LoginComponent } from './login/login.component';
+import { DispatchComponent } from './dispatch/dispatch.component';
 
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, DispatchComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -20,7 +21,7 @@ import { LoginComponent } from './login/login.component';
     NbButtonModule,
     NbCheckboxModule,
     NbAuthModule,
-    NbThemeModule.forRoot({ name: 'dark' }),
+    NbThemeModule.forRoot({ name: 'default' }),
   ]
 })
 export class GateModule { }
