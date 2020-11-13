@@ -33,7 +33,7 @@ export class AddComponent implements OnInit {
       password = password.trim();
 
 
-    if (!firstname && !password &&!email){ return; }
+    if (!firstname || !password || !email){ return; }
     this.AdminService.addAdmin({ firstname,lastname,email,password,status } as Admin)
     .subscribe(() => this.goBack());
   }

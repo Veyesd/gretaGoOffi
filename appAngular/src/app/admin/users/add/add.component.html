@@ -1,8 +1,11 @@
 <h1 id="title" class="title">Ajouter un utilisateur</h1>
-
-<nb-card size="large">
+<nb-card>
   <nb-card-body>
-    <button (click)="goBack()">Retour</button>
+    <button nbButton hero (click)="goBack()">Retour</button>
+  </nb-card-body>
+</nb-card>
+<nb-card size="geant">
+  <nb-card-body>
     <form>
       <div class="form-control-group">
         <label class="label">Prénom :</label>
@@ -21,12 +24,8 @@
 
       <div>
         <label class="label" for="birthday">Date de naissance</label>
-        <input
-          #birthday
-          placeholder="date de naissance"
-          [nbDatepicker]="formpicker"
-        />
-        <nb-rangepicker #formpicker></nb-rangepicker>
+        <input #birthday placeholder="date de naissance" [nbDatepicker]="formpicker" />
+        <nb-datepicker #formpicker></nb-datepicker>
       </div>
 
       <div class="form-control-group">
@@ -42,19 +41,19 @@
       <div class="form-control-group">
         <label class="label">Formation</label>
         <nb-select #training placeholder="Formation">
-          <nb-option *ngFor = "let training of trainings" value="training.id">{{training.name}}</nb-option>
+          <nb-option *ngFor="let training of trainings" value="training.id">{{training.name}}</nb-option>
         </nb-select>
       </div>
-
-      <button
-        nbButton
-        fullWidth
-        (click)="
-          add(firstname.value, lastname.value, adress.value, birthday.value, phone.value, email.value, training.value)
-        "
-      >
-        Valider
-      </button>
     </form>
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-body>
+    <button nbButton hero status="success" (click)="
+          add(firstname.value, lastname.value, adress.value, birthday.value, phone.value, email.value, training.value)
+        ">
+      Valider
+    </button>
+
   </nb-card-body>
 </nb-card>

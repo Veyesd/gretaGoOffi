@@ -31,7 +31,8 @@ export class AdminService {
     );
   }
   updateAdmin(Admin: Admin): Observable<any> {
-    return this.http.put(this.url, Admin, this.httpOptions).pipe(
+    const urlupdate = `${this.url}/${Admin.id}`;
+    return this.http.put(urlupdate, Admin, this.httpOptions).pipe(
       tap(_ => this.log(`updated Admin id=${Admin.id}`)),
       catchError(this.handleError<any>('updateAdmin'))
     );

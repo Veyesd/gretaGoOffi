@@ -4,7 +4,7 @@ import { EditComponent } from './edit/edit.component';
 import { IndexComponent } from './index/index.component';
 import { AddComponent } from './add/add.component';
 import { PlacesRoutingModule } from './places-routing.module';
-import { NbCardModule, NbDatepickerModule, NbSelectModule, NbTreeGridModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbDatepickerModule, NbSelectModule, NbTreeGridModule } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
 
 
@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     NbDatepickerModule,
     FormsModule,
     NbSelectModule,
+    NbButtonModule,
   ]
 })
 export class PlacesModule { }

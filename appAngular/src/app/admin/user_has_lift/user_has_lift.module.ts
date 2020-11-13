@@ -4,7 +4,7 @@ import { EditComponent } from './edit/edit.component';
 import { IndexComponent } from './index/index.component';
 import { AddComponent } from './add/add.component';
 import { UserHasLiftRoutingModule } from './user_has_lift-routing.module';
-import { NbButtonModule, NbCardModule, NbDatepickerModule,NbRadioModule, NbInputModule, NbSelectModule, NbTreeGridModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbDatepickerModule,NbRadioModule, NbInputModule, NbSelectModule, NbTreeGridModule, NbUserModule } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
 
 
@@ -23,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     NbButtonModule,
     NbCardModule,
     NbRadioModule,
+    NbUserModule,
   ]
 })
 export class UserHasLiftModule { }

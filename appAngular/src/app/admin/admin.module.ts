@@ -10,8 +10,10 @@ import {
   NbThemeModule,
   NbTreeGridModule,
   NbCardModule,
-  NbDatepickerModule
+  NbDatepickerModule,
+  NbSelectModule
 } from '@nebular/theme';
+// import { NbDateFnsDateModule } from '@nebular/date-fns/date-fns.module';
 
 
 
@@ -27,7 +29,9 @@ import {
     NbTreeGridModule,
     NbThemeModule,
     NbCardModule,
-    NbDatepickerModule.forRoot()
+    // NbDateFnsDateModule,
+    NbDatepickerModule.forRoot(),
+    NbSelectModule,
   ]
 })
 export class AdminModule { }

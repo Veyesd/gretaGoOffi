@@ -50,20 +50,20 @@ export class LayoutComponent implements OnInit {
       expanded: true,
     },
     {
-      title: 'Lift',
+      title: 'Traget',
       link: '/admin/lift',
-      icon: 'smiling-face-outline',
-      expanded: true,
-    },
-    {
-      title: 'user_has_place',
-      link: '/admin/user_has_place',
       icon: 'smiling-face-outline',
       expanded: true,
     },
     {
       title: 'user_has_lift',
       link: '/admin/user_has_lift',
+      icon: 'smiling-face-outline',
+      expanded: true,
+    },
+    {
+      title: 'user_has_place',
+      link: '/admin/user_has_place',
       icon: 'smiling-face-outline',
       expanded: true,
     },

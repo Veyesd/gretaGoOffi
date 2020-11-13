@@ -4,8 +4,9 @@ import { IndexComponent } from './index/index.component';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 import { UsersRoutingModule } from './users-routing.module';
-import { NbDatepickerModule, NbSelectModule, NbTreeGridModule, NbCardModule } from '@nebular/theme';
+import { NbDatepickerModule, NbSelectModule, NbTreeGridModule, NbCardModule, NbButtonModule } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
+// import { NbDateFnsDateModule } from '@nebular/date-fns/date-fns.module';
 
 
 
@@ -20,6 +21,9 @@ import { FormsModule } from '@angular/forms';
     NbDatepickerModule,
     FormsModule,
     NbSelectModule,
+    NbButtonModule,
+  //    NbDateFnsDateModule,
+  
   ]
 })
 export class UsersModule { }

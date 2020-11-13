@@ -1,1 +1,53 @@
-<p>edit works!</p>
+<ng-container *ngIf="Admin">
+<h1 id="title" class="title">Modifier Admin</h1>
+
+<nb-card>
+  <nb-card-body>
+    <button nbButton hero (click)="goBack()">Retour</button>
+  </nb-card-body>
+</nb-card>
+<nb-card size="medium">
+  <nb-card-body>
+
+    <form>
+
+      <div class="form-control-group">
+        <label class="label">firstname</label>
+        <input nbInput [(ngModel)]="Admin.firstname" fieldSize="small" name="firstname" #firstname
+          placeholder="firstname" />
+      </div>
+      <div class="form-control-group">
+        <label class="label">lastname</label>
+        <input nbInput [(ngModel)]="Admin.lastname" fieldSize="small" name="lastname" #lastname
+          placeholder="lastname" />
+      </div>
+      <div class="form-control-group">
+        <label class="label">email</label>
+        <input nbInput [(ngModel)]="Admin.email" fieldSize="small" name="email" #email placeholder="email" />
+
+      </div>
+      <div class="form-control-group">
+        <label class="label">password</label>
+        <input nbInput [(ngModel)]="Admin.password" fieldSize="small" name="password" #password
+          placeholder="password" />
+      </div>
+    
+
+        <div class="form-control-group">
+          <label class="label">status</label>
+        <nb-toggle [(ngModel)]="Admin.status" status="success" name="status" #status></nb-toggle>
+        </div>
+
+    </form>
+  </nb-card-body>
+</nb-card>
+
+<nb-card>
+  <nb-card-body>
+    <button nbButton hero status="success" fullWidth (click)="save()">
+      Valider
+    </button>
+
+  </nb-card-body>
+</nb-card>
+</ng-container>

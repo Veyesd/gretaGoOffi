@@ -1,8 +1,12 @@
+<ng-container *ngIf="training">
 <h1 id="title" class="title">Modifications</h1>
-
-<nb-card size="large">
+<nb-card>
   <nb-card-body>
-    <button (click)="goBack()">Retour</button>
+    <button nbButton hero (click)="goBack()">Retour</button>
+  </nb-card-body>
+</nb-card>
+<nb-card size="geant">
+  <nb-card-body>
     <form>
       <div class="form-control-group">
         <label class="label" for="input-name">Nom :</label>
@@ -26,7 +30,7 @@
           [nbDatepicker]="formpicker"
           [(ngModel)]="training.start_date"
         />
-        <nb-rangepicker #formpicker></nb-rangepicker>
+        <nb-datepicker #formpicker></nb-datepicker>
       </div>
       <div>
         <label class="label" for="input-end_date">Date de fin</label>
@@ -38,10 +42,19 @@
           [(ngModel)]="training.end_date"
           name="end_date"
         />
-        <nb-rangepicker #formpicker2></nb-rangepicker>
+        <nb-datepicker #formpicker2></nb-datepicker>
       </div>
 
-      <button nbButton fullWidth (click)="save()">Valider</button>
+      <div class="form-control-group">
+        <label class="label">status</label>
+      <nb-toggle [(ngModel)]="training.status" status="success" name="status" #status></nb-toggle>
+      </div>
     </form>
+    </nb-card-body>
+  </nb-card>
+      <nb-card>
+        <nb-card-body>
+      <button nbButton hero status="success"  (click)="save()">Valider</button>
   </nb-card-body>
 </nb-card>
+</ng-container>

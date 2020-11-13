@@ -4,7 +4,7 @@ import { EditComponent } from './edit/edit.component';
 import { IndexComponent } from './index/index.component';
 import { AddComponent } from './add/add.component';
 import { BugsRoutingModule } from './bugs-routing.module';
-import { NbButtonModule, NbCardModule, NbDatepickerModule, NbInputModule, NbSelectModule, NbTreeGridModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbDatepickerModule, NbInputModule, NbSelectModule, NbTreeGridModule, NbUserModule } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
 
 
@@ -21,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     NbSelectModule,
     NbInputModule,
     NbButtonModule,
-    NbCardModule,
+  
+    NbUserModule,
   ]
 })
 export class BugsModule { }

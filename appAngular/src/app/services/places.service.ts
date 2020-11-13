@@ -28,7 +28,8 @@ export class PlacesService {
     );
   }
   updatePlace(place: Place): Observable<any> {
-    return this.http.put(this.url, place, this.httpOptions).pipe(
+    const urlupdate = `${this.url}/${place.id}`;
+    return this.http.put(urlupdate, place, this.httpOptions).pipe(
       tap(_ => this.log(`updated Place id=${place.id}`)),
       catchError(this.handleError<any>('updatePlace'))
     );

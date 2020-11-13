@@ -116,6 +116,9 @@ router.post('/register', (req, res) => {
   if (!lat || !lng || !user_id) {
     return res.status(400).json({ message: 'Il manque un paramètre' })
   }
+  console.log("req.body", req.body)
+  req.body.created_at=new Date().toISOString().slice(0, 19).replace('T', ' ');;
+  req.body.updated_at=new Date().toISOString().slice(0, 19).replace('T', ' ');;
 
   // Verification si l'utilisateur existe déjà
   Alert.create(req.body)

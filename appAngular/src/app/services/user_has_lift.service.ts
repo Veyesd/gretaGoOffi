@@ -31,7 +31,8 @@ export class UserHasLiftService {
     );
   }
   updateUserHasLift(UserHasLift: UserHasLift): Observable<any> {
-    return this.http.put(this.url, UserHasLift, this.httpOptions).pipe(
+    const urlupdate = `${this.url}/${UserHasLift.id}`;
+    return this.http.put(urlupdate, UserHasLift, this.httpOptions).pipe(
       tap(_ => this.log(`updated UserHasLift id=${UserHasLift.id}`)),
       catchError(this.handleError<any>('updateUserHasLift'))
     );

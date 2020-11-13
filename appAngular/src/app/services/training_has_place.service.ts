@@ -31,6 +31,7 @@ export class TrainingHasPlaceService {
     );
   }
   updateTrainingHasPlace(TrainingHasPlace: TrainingHasPlace): Observable<any> {
+
     return this.http.put(this.url, TrainingHasPlace, this.httpOptions).pipe(
       tap(_ => this.log(`updated TrainingHasPlace id=${TrainingHasPlace.training_id}`)),
       catchError(this.handleError<any>('updateTrainingHasPlace'))

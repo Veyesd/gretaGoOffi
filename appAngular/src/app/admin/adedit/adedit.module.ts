@@ -4,7 +4,7 @@ import { EditComponent } from './edit/edit.component';
 import { IndexComponent } from './index/index.component';
 import { AddComponent } from './add/add.component';
 import { AdeditRoutingModule } from './adedit-routing.module';
-import { NbButtonModule, NbCardModule, NbDatepickerModule, NbFormFieldModule, NbRadioModule,NbInputModule, NbSelectModule, NbTreeGridModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbDatepickerModule, NbFormFieldModule, NbRadioModule,NbInputModule, NbSelectModule, NbTreeGridModule, NbToggleModule } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
 
 
@@ -24,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     NbCardModule,
     NbRadioModule,
     NbFormFieldModule,
+    NbToggleModule,
   ]
 })
 export class AdeditModule { }

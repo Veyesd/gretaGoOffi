@@ -116,8 +116,8 @@ router.post('/register', (req, res) => {
 
   // Verification si l'utilisateur existe déjà
 
-  req.body.created_at = new Date().toISOString().slice(0, 19).replace('T', ' ');;
-  req.body.updated_at = new Date().toISOString().slice(0, 19).replace('T', ' ');;
+  req.body.create_at = new Date().toISOString().slice(0, 19).replace('T', ' ');;
+  req.body.update_at = new Date().toISOString().slice(0, 19).replace('T', ' ');;
   BugReport.create(req.body)
     .then(data => res.json({ message: 'bug report  created', data: data }))
     .catch(err => res.json({ message: 'Database error', error: err }))

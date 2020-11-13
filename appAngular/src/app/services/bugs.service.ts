@@ -31,7 +31,8 @@ export class BugsService {
     );
   }
   updateBugs(Bugs: Bugs): Observable<any> {
-    return this.http.put(this.url, Bugs, this.httpOptions).pipe(
+    const urlupdate = `${this.url}/${Bugs.id}`;
+    return this.http.put(urlupdate, Bugs, this.httpOptions).pipe(
       tap(_ => this.log(`updated Bugs id=${Bugs.id}`)),
       catchError(this.handleError<any>('updateBugs'))
     );

@@ -1,4 +1,4 @@
-<h1 id="title" class="title">Ajouter un lieu de formation</h1>
+<h1 id="title" class="title">Ajouter un Admin</h1>
 
 <nb-card>
   <nb-card-body>
@@ -6,13 +6,13 @@
     <button nbButton hero (click)="goBack()">Retour</button>
   </nb-card-body>
 </nb-card>
-  <nb-card size="small">
+  <nb-card size="medium">
   <nb-card-body>  
     
     <form>
   
         <div class="form-control-group">
-          <label class="label" >firstname</label>
+          <label class="label" >Firstname</label>
           <input
           nbInput
           fieldSize="small"
@@ -22,7 +22,7 @@
           />
         </div>
         <div class="form-control-group">
-          <label class="label" >lastname</label>
+          <label class="label" >Lastname</label>
           <input
           nbInput
           fieldSize="small"
@@ -32,7 +32,7 @@
           />
         </div>
         <div class="form-control-group">
-          <label class="label" >email</label>
+          <label class="label" >Email</label>
       
 
           <nb-form-field>
@@ -47,7 +47,7 @@
           </nb-form-field>
         </div>
         <div class="form-control-group">
-          <label class="label" >password</label>
+          <label class="label" >Password</label>
           <input
           nbInput
           fieldSize="small"
@@ -56,15 +56,12 @@
             placeholder="password"
           />
         </div>
+  
         <div class="form-control-group">
-          <label class="label" >status</label>
-         
-          <nb-radio-group name="status" #status>
-            <nb-radio value="0">false</nb-radio>
-            <nb-radio value="1">true</nb-radio>
-
-          </nb-radio-group>
+          <label class="label">Status</label>
+        <nb-toggle [checked]="true" status="success" name="status" #status></nb-toggle>
         </div>
+       
 
     </form>
       </nb-card-body>

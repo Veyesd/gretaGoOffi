@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Place } from '../../../interfaces/place';
-import { Location } from '@angular/common';
 import { PlacesService } from '../../../services/places.service';
+import { Location } from '@angular/common';
+import { Place } from 'src/app/interfaces/place';
 
 @Component({
   selector: 'app-edit',
@@ -10,10 +10,12 @@ import { PlacesService } from '../../../services/places.service';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-  place: Place;
+  Place: Place;
+  status: string;
+
   constructor(
     private route: ActivatedRoute,
-    private placeService: PlacesService,
+    private PlacesService: PlacesService,
     private location: Location
   ) { }
 
@@ -22,14 +24,15 @@ export class EditComponent implements OnInit {
   }
   getPlace(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.placeService.getPlace(id)
-    .subscribe(t => this.place = t);
+    this.PlacesService.getPlace(id)
+    .subscribe(t => this.Place = t['data']);
   }
   goBack(): void{
     this.location.back();
   }
   save(): void{
-    this.placeService.updatePlace(this.place)
+    this.PlacesService.updatePlace(this.Place)
     .subscribe(() => this.goBack());
   }
+
 }

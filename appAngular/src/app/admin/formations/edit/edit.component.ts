@@ -25,7 +25,7 @@ export class EditComponent implements OnInit {
   getTraining(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.trainingService.getTraining(id)
-    .subscribe(t => this.training = t);
+    .subscribe(t => this.training = t['data']);
   }
   goBack(): void{
     this.location.back();

@@ -1,3 +1,4 @@
+<ng-container *ngIf="Place">
 <h1 id="title" class="title">Modifier un lieu de formation</h1>
 
 <nb-card size="large">
@@ -7,24 +8,47 @@
       <div class="form-control-group">
         <label class="label" >Nom du lieu :</label>
         <input
+        [(ngModel)]="Place.name"
           name="name"
           #name
           placeholder="name"
-          [(ngModel)]="place.name"
         />
+      </div>
+      <div class="form-control-group">
+        <label class="label" >Latitude</label>
+        <input
+        [(ngModel)]="Place.lat"
+          name="lat"
+          #lat
+          placeholder="lat"
+        />
+
+      </div>
+      <div class="form-control-group">
+        <label class="label" >Longitude</label>
+        <input
+        [(ngModel)]="Place.lng"
+          name="lng"
+          #lng
+          placeholder="lng"
+        />
+
       </div>
       <div class="form-control-group">
         <label class="label" >Adresse du lieu :</label>
         <input
-          name="address"
+        [(ngModel)]="Place.address"
+          name="adresse"
           #adresse
           placeholder="adresse"
-          [(ngModel)]="place.address"
         />
 
       </div>
 
-      <button nbButton fullWidth (click)="save()">Valider</button>
+      <button nbButton hero status="success" fullWidth (click)="save()">
+        Valider
+      </button>
     </form>
   </nb-card-body>
 </nb-card>
+</ng-container>

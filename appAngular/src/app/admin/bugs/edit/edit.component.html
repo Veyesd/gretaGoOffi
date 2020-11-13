@@ -1,45 +1,52 @@
-<h1 id="title" class="title">Modifications</h1>
+<ng-container *ngIf="Bugs">
+<h1 id="title" class="title">Modifier Bug Report</h1>
 
 <nb-card>
   <nb-card-body>
-<button nbButton hero (click)="goBack()">Retour</button>
-</nb-card-body>
+
+    <button nbButton hero (click)="goBack()">Retour</button>
+  </nb-card-body>
 </nb-card>
-<nb-card size="small">
-  <nb-card-body>
+  <nb-card size="medium">
+  <nb-card-body>  
+    
     <form>
-      <div  class="form-control-group">
-        <label class="label" for="input-user_id">Nom :</label>
-        <input
-     
-          name="user_id"
-          nbInput
-          fieldSize="small"
-          [(ngModel)]="Bugs.id"
-          id="input-user_id"
-          placeholder="User ID"
-        />
-      </div>
       <div class="form-control-group">
-        <label class="label" for="input-description">description :</label>
-        <textarea
+      <nb-card>
+        <nb-card-body>
+        <label class="label" >User</label>
+          <nb-user size="large"
+                   name="{{ Bugs.user.firstname }} {{ Bugs.user.lastname }}"
+                   title="ID {{ Bugs.user_id }} ( Email:{{ Bugs.user.email }} )">
+          </nb-user>
+      
+        </nb-card-body>
+      </nb-card>
+    </div>
+        <div class="form-control-group">
+          <nb-card>
+            <nb-card-body>
+          <label class="label" >Description:</label><br>
+        <textarea 
+        nbInput
+        fieldSize="small"
+        [(ngModel)]="Bugs.description"
           name="description"
-          nbInput
-          
-          fieldSize="small"
-          [(ngModel)]="Bugs.id"
-          id="input-description"
+          #description
           placeholder="description"
         ></textarea>
+      </nb-card-body>
+    </nb-card>
       </div>
+    </form>
+      </nb-card-body>
+</nb-card> 
 
-     <div>
-    </div>
-  </form>
-</nb-card-body>
-</nb-card>
-<nb-card>
-  <nb-card-body>
-<button nbButton hero status="success"   (click)="save()">Valider</button>
-</nb-card-body>
-</nb-card>
+      <nb-card>
+        <nb-card-body>
+          <button nbButton hero status="success"  (click)="save()">
+            Valider
+          </button>
+    </nb-card-body>
+  </nb-card>
+</ng-container>

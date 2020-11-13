@@ -31,7 +31,8 @@ export class LiftService {
     );
   }
   updateLift(Lift: Lift): Observable<any> {
-    return this.http.put(this.url, Lift, this.httpOptions).pipe(
+    const urlupdate = `${this.url}/${Lift.id}`;
+    return this.http.put(urlupdate, Lift, this.httpOptions).pipe(
       tap(_ => this.log(`updated Lift id=${Lift.id}`)),
       catchError(this.handleError<any>('updateLift'))
     );

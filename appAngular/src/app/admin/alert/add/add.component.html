@@ -1,4 +1,4 @@
-<h1 id="title" class="title">Ajouter un lieu de formation</h1>
+<h1 id="title" class="title">Ajouter un Alert</h1>
 
 <nb-card>
   <nb-card-body>
@@ -6,59 +6,38 @@
     <button nbButton hero (click)="goBack()">Retour</button>
   </nb-card-body>
 </nb-card>
-  <nb-card size="small">
-  <nb-card-body>  
-    
+<nb-card size="medium">
+  <nb-card-body>
+
     <form>
-  
-        <div class="form-control-group">
-          <label class="label" >lng</label>
-          <input
-          nbInput
-          fieldSize="small"
-            name="lng"
-            #lng
-            placeholder="lng"
-          />
-        </div>
-        <div class="form-control-group">
-          <label class="label" >lat</label>
-          <input
-          nbInput
-          fieldSize="small"
-            name="lat"
-            #lat
-            placeholder="lat"
-          />
-        </div>
-        <div class="form-control-group">
-          <label class="label" >status</label>
-         
-          <nb-radio-group name="status" #status>
-            <nb-radio value="0">false</nb-radio>
-            <nb-radio value="1">true</nb-radio>
+      <div class="form-control-group">
+        <label class="label">User</label>
+        <select #user_id placeholder="User" name='user_id'>
+          <option *ngFor="let user of users" value="{{user.id}}">{{user.firstname}}</option>
+        </select>
+      </div>
+      <div class="form-control-group">
+        <label class="label">lng</label>
+        <input nbInput fieldSize="small" name="lng" #lng placeholder="lng" />
+      </div>
+      <div class="form-control-group">
+        <label class="label">lat</label>
+        <input nbInput fieldSize="small" name="lat" #lat placeholder="lat" />
+      </div>
+      <div class="form-control-group">
+        <label class="label">Status</label>
+        <nb-toggle [checked]="true" status="success" name="status" #status></nb-toggle>
+      </div>
 
-          </nb-radio-group>
-        </div>
-        <div class="form-control-group">
-          <label class="label" >user_id</label>
-          <input
-          nbInput
-          fieldSize="small"
-            name="user_id"
-            #user_id
-            placeholder="user_id"
-          />
-        </div>
     </form>
-      </nb-card-body>
-</nb-card> 
+  </nb-card-body>
+</nb-card>
 
-      <nb-card>
-        <nb-card-body>
-      <button nbButton hero status="success" (click)="add(lng.value,
+<nb-card>
+  <nb-card-body>
+    <button nbButton hero status="success" (click)="add(lng.value,
       lat.value,
       status.value,
       user_id.value)">Valider</button>
-    </nb-card-body>
-  </nb-card>
+  </nb-card-body>
+</nb-card>

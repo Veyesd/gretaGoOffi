@@ -36,15 +36,15 @@ router.post('/login', (req, res) => {
   }
 
 
-  Admin.findOne({ where: { email: req.body.email } })
+  Admin.findAll({ where: { email: req.body.email } })
 
     .then(result => {
 
       // Verification si l'utilisateur existe
       //----------------------------------------------
-      if (result.length === 0) {
+      if (result==null) {
 
-        User.findOne({ where: { email: req.body.email } })
+        User.findAll({ where: { email: req.body.email } })
 
           .then(result => {
 

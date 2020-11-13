@@ -4,7 +4,7 @@ import { EditComponent } from './edit/edit.component';
 import { IndexComponent } from './index/index.component';
 import { AddComponent } from './add/add.component';
 import { LiftRoutingModule } from './lift-routing.module';
-import { NbButtonModule, NbCardModule, NbDatepickerModule, NbRadioModule,NbInputModule, NbSelectModule, NbTreeGridModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbDatepickerModule, NbRadioModule,NbInputModule, NbSelectModule, NbTreeGridModule, NbToggleModule } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
 
 
@@ -22,6 +22,8 @@ import { FormsModule } from '@angular/forms';
     NbInputModule,
     NbButtonModule,
     NbRadioModule,
+    NbToggleModule,
+   
   ]
 })
 export class LiftModule { }

@@ -5,6 +5,8 @@ import { UsersService } from '../../../services/users.service';
 import { User } from '../../../interfaces/user';
 import { Training } from '../../../interfaces/training';
 import { TrainingService } from '../../../services/training.service';
+import { FormControl } from '@angular/forms';
+// import { format, compareAsc } from 'date-fns'
 
 @Component({
   selector: 'app-edit',
@@ -27,20 +29,26 @@ export class EditComponent implements OnInit {
   }
   getTrainings(): void{
     this.trainingService.getTrainings()
-    .subscribe(trainings => this.trainings = trainings['data'])
+    .subscribe(trainings => {this.trainings = trainings['data'];
+    console.log(this.trainings);
+  })
+
   }
   getUser(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.userService.getUser(id)
-    .subscribe(t => {this.user =t;
-    console.log( t);
-    
-    });
+    .subscribe(t => {
+      // t['data'].birthday = format( new Date(2014, 1, 11), 'yyyy-MM-dd' );
+      this.user =t['data'];
+    console.log(this.user)
+  
+  });
   }
   goBack(): void{
     this.location.back();
   }
   save(): void{
+    console.log(this.user);
     this.userService.updateUser(this.user)
     .subscribe(() => this.goBack());
   }

@@ -18,17 +18,11 @@ export class TrainingService {
 
   getTrainings(): Observable<Training[]> {
     return this.http.get<Training[]>(this.url)
-      .pipe(
-        tap(_ => this.log('fetched training')),
-        catchError(this.handleError<Training[]>('getTrainings', []))
-      );
+ 
   }
   getTraining(id: number): Observable<Training> {
     const url = `${this.url}/${id}`;
-    return this.http.get<Training>(url).pipe(
-      tap(_ => this.log(`fetched training id=${id}`)),
-      catchError(this.handleError<Training>(`getTraining id=${id}`))
-    );
+    return this.http.get<Training>(url)
   }
   addTraining(training: Training): Observable<Training> {
     return this.http.post<Training>(`${this.url}/register`, training, this.httpOptions).pipe(
@@ -46,7 +40,8 @@ export class TrainingService {
     );
   }
   updateTraining(training: Training): Observable<any> {
-    return this.http.put(this.url, training, this.httpOptions).pipe(
+    const urlupdate = `${this.url}/${training.id}`;
+    return this.http.put(urlupdate, training, this.httpOptions).pipe(
       tap(_ => this.log(`updated training id=${training.id}`)),
       catchError(this.handleError<any>('updateTraining'))
     );

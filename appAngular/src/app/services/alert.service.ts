@@ -31,7 +31,8 @@ export class AlertService {
     );
   }
   updateAlert(Alert: Alert): Observable<any> {
-    return this.http.put(this.url, Alert, this.httpOptions).pipe(
+    const urlupdate = `${this.url}/${Alert.id}`;
+    return this.http.put(urlupdate, Alert, this.httpOptions).pipe(
       tap(_ => this.log(`updated Alert id=${Alert.id}`)),
       catchError(this.handleError<any>('updateAlert'))
     );

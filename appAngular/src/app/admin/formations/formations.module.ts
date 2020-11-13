@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { IndexComponent } from './index/index.component';
 import { AddComponent } from './add/add.component';
 import { FormationsRoutingModule } from './formations-routing.module';
-import { NbCardModule, NbTreeGridModule, NbDatepickerModule, NbSelectModule} from '@nebular/theme';
+import { NbCardModule, NbTreeGridModule, NbDatepickerModule, NbSelectModule, NbToggleModule, NbButtonModule} from '@nebular/theme';
 import { EditComponent } from './edit/edit.component';
 import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -18,6 +19,8 @@ import { FormsModule } from '@angular/forms';
     NbDatepickerModule,
     FormsModule,
     NbSelectModule,
+    NbToggleModule,
+    NbButtonModule,
 
   ]
 })

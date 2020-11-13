@@ -31,6 +31,7 @@ export class UserHasPlaceService {
     );
   }
   updateUserHasPlace(UserHasPlace: UserHasPlace): Observable<any> {
+
     return this.http.put(this.url, UserHasPlace, this.httpOptions).pipe(
       tap(_ => this.log(`updated UserHasPlace id=${UserHasPlace.user_id}`)),
       catchError(this.handleError<any>('updateUserHasPlace'))

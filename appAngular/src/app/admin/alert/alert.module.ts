@@ -4,7 +4,7 @@ import { EditComponent } from './edit/edit.component';
 import { IndexComponent } from './index/index.component';
 import { AddComponent } from './add/add.component';
 import { AlertRoutingModule } from './alert-routing.module';
-import { NbButtonModule, NbCardModule, NbDatepickerModule, NbInputModule, NbRadioModule,NbSelectModule, NbTreeGridModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbDatepickerModule, NbInputModule, NbRadioModule,NbSelectModule, NbToggleModule, NbTreeGridModule, NbUserModule } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
 
 
@@ -23,6 +23,8 @@ import { FormsModule } from '@angular/forms';
     NbButtonModule,
     NbCardModule,
     NbRadioModule,
+    NbToggleModule,
+    NbUserModule,
   ]
 })
 export class AlertModule { }
